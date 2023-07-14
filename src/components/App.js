@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMotorcycles } from '../actions/motorcycleActions';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import Motorcycles from './Motorcycles';
+import { fetchMotorcycles } from '../actions/motorcycleActions';
 
 function App() {
   const dispatch = useDispatch();
-  const motorcycles = useSelector((state) => state.motorcycles);
 
   useEffect(() => {
     dispatch(fetchMotorcycles());
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Motorcycle App</h1>
-      <Motorcycles motorcycles={motorcycles} />
-    </div>
+    <Routes>
+      <Route path="/motorcycles" element={<Motorcycles />} />
+      {/* Add your routes here! */}
+    </Routes>
   );
 }
 
