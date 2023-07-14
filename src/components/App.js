@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Motorcycles from './Motorcycles';
-import { fetchMotorcycles } from '../actions/motorcycleActions';
+import { fetchMotorcycles } from '../redux/actions/motorcycleActions';
 
 function App() {
   const dispatch = useDispatch();
