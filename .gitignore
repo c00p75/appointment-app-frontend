@@ -26,3 +26,5 @@ package-lock.json
 yarn.lock
 
 notes.md
+.env
+.atemp/

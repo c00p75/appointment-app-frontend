@@ -16,4 +16,5 @@ const motorcycleReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export default motorcycleReducer;
