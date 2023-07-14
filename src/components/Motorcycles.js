@@ -1,14 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMotorcycles } from '../actions/motorcycleActions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 function Motorcycles() {
-  const dispatch = useDispatch();
   const motorcycles = useSelector((state) => state.motorcycles);
-
-  useEffect(() => {
-    dispatch(fetchMotorcycles());
-  }, [dispatch]);
 
   return (
     <div>
