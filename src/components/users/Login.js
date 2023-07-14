@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/actions/userActions';
 
 function Login() {
@@ -38,6 +38,10 @@ function Login() {
         <button type="submit">Login</button>
       </form>
       {error && <div className="error">{error}</div>}
+      <div>
+        <span>Are you new?</span>
+        <NavLink to="/register">Register</NavLink>
+      </div>
     </section>
   );
 }
