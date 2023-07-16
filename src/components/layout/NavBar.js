@@ -19,7 +19,15 @@ function NavBar() {
           </button>
         </div>
       ) : (
-        <NavLink to="/login">Login</NavLink>
+        <div className="nav-bar d-flex justify-content-between position-absolute p-3">
+          <div>
+            <i className="fa fa-align-justify" />
+          </div>
+          <div>
+            <i className="fa fa-search" />
+            <NavLink to="/login" className="btn ms-1">Login</NavLink>
+          </div>
+        </div>
       )}
     </div>
   );
