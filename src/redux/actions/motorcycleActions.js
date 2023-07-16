@@ -1,9 +1,8 @@
-import { BASE_URL } from '../../constants';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../../config/axiosInstance';
+import { BASE_URL } from '../../constants';
 
 export const FETCH_MOTORCYCLES_SUCCESS = 'FETCH_MOTORCYCLES_SUCCESS';
-
-// const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:3050/';
 
 export const fetchMotorcyclesSuccess = (motorcycles) => ({
   type: FETCH_MOTORCYCLES_SUCCESS,
@@ -20,3 +19,44 @@ export const fetchMotorcycles = () => (dispatch) => {
       console.error('Error fetching motorcycles:', error);
     });
 };
+
+export const getMotorcycles = createAsyncThunk(
+  'motorcycles/getMotorcycles',
+  async (_, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await axiosInstance.get(`${BASE_URL}motorcycles`);
+
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue({ ...error.response.data.error });
+    }
+  },
+);
+
+export const getMotorcycle = createAsyncThunk(
+  'motorcycles/getMotorcycle',
+  async (id, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await axiosInstance.get(`${BASE_URL}motorcycles/${id}`);
+
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue({ ...error.response.data.error });
+    }
+  },
+);
+
+export const deleteMotorcycle = createAsyncThunk(
+  'motorcycles/deleteMotorcycle',
+  async (id, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await axiosInstance.delete(
+        `${BASE_URL}motorcycles/${id}`,
+      );
+
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue({ ...error.response.data.error });
+    }
+  },
+);

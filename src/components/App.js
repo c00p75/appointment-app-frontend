@@ -4,6 +4,7 @@ import Motorcycles from './Motorcycles';
 import Register from './users/Register';
 import Login from './users/Login';
 import Layout from './layout/Layout';
+import Motorcycle from './motorcycles/Motorcycle';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/motorcycles" element={<Motorcycles />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/motorcycles/:id" element={<Motorcycle />} />
         {/* Add your routes here! */}
       </Route>
     </Routes>
