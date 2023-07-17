@@ -1,3 +1,44 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto, 'Courier New', Courier, monospace;
+}
+
 body {
   margin: 0;
+}
+
+.nav-bar {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.reserve-form {
+  height: calc(100vh - 20px);
+}
+
+.vespa-form {
+  max-width: 960px;
+}
+
+.vespa-form .form-select {
+  max-width: 220px;
+}
+
+.vespa-form button,
+.vespa-form select {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-radius: 25px;
+}
+
+.vespa-form hr {
+  border-width: 2px;
+  opacity: 1;
+}
+
+select ::before,
+select ::after {
+  background: red;
+  color: red;
 }

@@ -1,20 +1,25 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Motorcycles from './Motorcycles';
-import { fetchMotorcycles } from '../redux/actions/motorcycleActions';
+import Register from './users/Register';
+import Login from './users/Login';
+import Layout from './layout/Layout';
+import Motorcycle from './motorcycles/Motorcycle';
+import Reservations from './Reservations';
+import ReserveForm from './Reservations/ReserveForm';
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchMotorcycles());
-  }, [dispatch]);
-
   return (
     <Routes>
-      <Route path="/motorcycles" element={<Motorcycles />} />
-      {/* Add your routes here! */}
+      <Route path="/" element={<Layout />}>
+        <Route path="/motorcycles" element={<Motorcycles />} />
+        <Route path="/reservations" element={<Reservations />} />
+        <Route path="/book-reservations" element={<ReserveForm />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/motorcycles/:id" element={<Motorcycle />} />
+        {/* Add your routes here! */}
+      </Route>
     </Routes>
   );
 }
