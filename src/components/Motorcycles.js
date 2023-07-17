@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { useNavigate, Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import { getMotorcycles } from '../redux/actions/motorcycleActions';
 import { selectMotorcycle } from '../redux/reducers/motorcyclesSlice';
-
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import './styles/motorcycles.css';
@@ -28,35 +28,45 @@ function Motorcycles() {
   };
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center" style={{ height: '100vh' }}>
-      <div className="text-center">
-        <h1 className=" fw-bold fs-12">LATEST MODELS</h1>
-        <p className="text-secondary fw-bold">Please select a Vespa Model</p>
-        <Carousel
-          showArrows
-          showStatus={false}
-          showThumbs={false}
-          infiniteLoop
-          centerMode
-          centerSlidePercentage={50}
-          emulateTouch
-          className="vertical-carousel"
-        >
-          {motorcycles.map((motorcycle) => (
-            <div key={motorcycle.id} className="d-flex flex-column align-items-center justify-content-center">
-              <img src={vespaImage} alt={motorcycle.model} className="moto-photo" />
-              <h3>{motorcycle.model}</h3>
-              <p>{motorcycle.description}</p>
-              <div className="d-flex flex-row w-60 justify-content-between">
-                <img src={facebook} alt={motorcycle.model} className="social mx-2" />
-                <img src={twitter} alt={motorcycle.model} className="social mx-2" />
-                <img src={instagram} alt={motorcycle.model} className="social mx-2" />
-              </div>
+    <div className="d-flex flex-column main-container pt-5">
+      <h1 className="text-center fw-bold fs-12">LATEST MODELS</h1>
+      <p className="text-center text-secondary">Please select a Vespa Model</p>
+      <Carousel
+        showArrows
+        showStatus={false}
+        showThumbs={false}
+        infiniteLoop
+        // centerMode
+        // centerSlidePercentage={75}
+        emulateTouch
+      >
+        {motorcycles.map((motorcycle) => (
+          <button
+            type="button"
+            key={motorcycle.id}
+            onClick={() => handleShowDetail(motorcycle.id)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') handleShowDetail(motorcycle.id);
+            }}
+            className="d-flex flex-column justify-content-center align-items-center btn moto-card"
+          >
+            <img src={vespaImage} alt={motorcycle.model} className="moto-photo" />
+            <h3 className="fs-1">{motorcycle.model}</h3>
+            <p className="fs-6 text-secondary">{motorcycle.description}</p>
+            <div className="d-flex flex-row gap-4">
+              <a href="https://www.facebook.com">
+                <img src={facebook} alt={motorcycle.model} className="social" />
+              </a>
+              <a href="https://www.twitter.com">
+                <img src={twitter} alt={motorcycle.model} className="social" />
+              </a>
+              <a href="https://www.instagram.com">
+                <img src={instagram} alt={motorcycle.model} className="social" />
+              </a>
             </div>
-          ))}
-        </Carousel>
-      </div>
-      <Link to="/motorcycles/new" className="mt-5">Add New Motorcycle</Link>
+          </button>
+        ))}
+      </Carousel>
     </div>
   );
 }
