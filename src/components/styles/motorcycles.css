@@ -1,27 +1,26 @@
 .main-container {
-    height: 90vh;
+  height: 90vh;
 }
 
 .social {
-    height: 2rem;
+  height: 2rem;
 }
 
 .moto-photo {
-    transform: scale(0.8);
+  transform: scale(0.8);
 }
 
 .slide {
-    margin: 0;
-    padding: 1rem;
-
-    /* background-color: green; */
-    height: 75vh;
+  margin: 0;
+  padding: 1rem;
+  /* background-color: green; */
+  height: 75vh;
 }
 
 .moto-card {
-    height: 80%;
-    margin: 0;
-    padding: 0;
+  height: 80%;
+  margin: 0;
+  padding: 0;
 
 }
 
