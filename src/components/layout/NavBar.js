@@ -40,10 +40,10 @@ function NavBar() {
           <span
             role="button"
             tabIndex={0}
-            onClick={() => handleUnauthorizedClick('/add-motorcycle')}
+            onClick={() => handleUnauthorizedClick('/motorcycles/new')}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                handleUnauthorizedClick('/add-motorcycle');
+                handleUnauthorizedClick('/motorcycles/new');
               }
             }}
           >
@@ -64,10 +64,10 @@ function NavBar() {
           <span
             role="button"
             tabIndex={0}
-            onClick={() => handleUnauthorizedClick('/add-reservation')}
+            onClick={() => handleUnauthorizedClick('/reserve')}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
-                handleUnauthorizedClick('/add-reservation');
+                handleUnauthorizedClick('/reserve');
               }
             }}
           >
