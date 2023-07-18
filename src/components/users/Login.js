@@ -29,17 +29,17 @@ function Login() {
   };
 
   return (
-    <section id="login">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input name="email" type="text" placeholder="Email" />
-        <input name="password" type="text" placeholder="Password" />
+    <section id="login" className="d-flex flex-column justify-content-center align-items-center">
+      <h1 className="mb-3">Login</h1>
+      <form className="d-flex flex-column justify-content-center align-items-center" onSubmit={handleSubmit}>
+        <input name="email" type="text" placeholder="Email" className="border border-none fs-5" />
+        <input name="password" type="text" placeholder="Password" className="border border-none fs-5" />
 
-        <button type="submit">Login</button>
+        <button type="submit" className="my-3">Login</button>
       </form>
       {error && <div className="error">{error}</div>}
       <div>
-        <span>Are you new?</span>
+        <span>Are you new? </span>
         <NavLink to="/register">Register</NavLink>
       </div>
     </section>
