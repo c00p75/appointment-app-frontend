@@ -1,14 +1,14 @@
 import './reservationForm.css';
 import { Dropdown, Modal, Button } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 import { LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-
-const motorcycle = {
-  model: 'Vespa',
-  description: 'The 2020 MT-03 does away with the previous generation’s inline twin in favor of a new inline twin with a 180-degree crank and built-in counterbalancers that are expected to produce over 50 crank HP and mid to high 40’s in torque at the crank. It also has Single shock; 7-step preload-adjustable, 4.9-in travel.',
-};
+import { useNavigate } from 'react-router-dom';
+import { getMotorcycles } from '../../redux/actions/motorcycleActions';
+import { BASE_URL } from '../../constants';
+import { createReservation } from '../../redux/actions/reservationActions';
 
 const cities = [
   'Lagos',
@@ -24,9 +24,18 @@ const cities = [
 ];
 
 function ReservationForm() {
-  const [modalShow, setModalShow] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    dispatch(getMotorcycles());
+  }, [dispatch]);
+
+  const { motorcycles } = useSelector((state) => state.motorcycles);
+  const [motorcycle, setMotorcycle] = useState('');
   const [selectedCity, setSelectedCity] = useState('City');
   const [reservationDate, setReservationDate] = useState(dayjs());
+  const [modalShow, setModalShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const disabledDates = [
     new Date('2023-07-25'),
     new Date('2023-07-26'),
@@ -37,22 +46,49 @@ function ReservationForm() {
     disabledDates.some((disabledDate) => date.$d.toDateString() === disabledDate.toDateString())
   );
 
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append('reservation[motorcycle_id]', motorcycle.id);
+    formData.append('reservation[city]', selectedCity);
+    formData.append('reservation[date]', reservationDate.format('YYYY-MM-DD'));
+    const isSuccess = await dispatch(createReservation(formData));
+    setIsLoading(false);
+    if (isSuccess.meta.requestStatus === 'fulfilled') { navigate('/motorcycles'); }
+  };
+
   return (
     <div id="reservation-form">
-      <img src="https://purepng.com/public/uploads/large/purepng.com-motorcyclemotorcyclemotorbikebikecycleracing-bike-1701527509998savsa.png" alt="pic" className="reservation-item" />
+      {!motorcycle.photo && (<img src="https://www.onlygfx.com/wp-content/uploads/2017/03/motorcycle-silhouette-5-1024x604.png" alt="pic" className="reservation-item" />)}
+      {motorcycle.photo && (<img src={BASE_URL + motorcycle.photo.url} alt="pic" className="reservation-item" />)}
       <div className="container position-absolute d-flex flex-column justify-content-center align-items-center">
-        <h1>{`Book a ${motorcycle.model}`}</h1>
+        <h1>{motorcycle.model ? `Book a ${motorcycle.model}` : 'Book a motorcycle'}</h1>
         <span className="divide" />
         <p>{motorcycle.description}</p>
         <div className="mt-3 d-flex">
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic" className="form-btn">
+            <Dropdown.Toggle variant="success" className="dropdown-basic form-btn">
+              {motorcycle.description ? motorcycle.description : 'Motorcycle'}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {!motorcycles.length && (
+                <Dropdown.Item disabled>No motorcycles available</Dropdown.Item>
+              )}
+              {motorcycles.map((motorcycle, index) => (
+                <Dropdown.Item key={`motorcycle-${index + 1}`}><button type="button" onClick={() => { setMotorcycle(motorcycle); }}>{motorcycle.model}</button></Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+
+          <Dropdown>
+            <Dropdown.Toggle variant="success" className="dropdown-basic form-btn">
               {selectedCity}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
               {cities.map((city, index) => (
-                <Dropdown.Item key={`city-${index + 1}`}><button type="button" onClick={() => { setSelectedCity(city); console.log(city, selectedCity); }}>{city}</button></Dropdown.Item>
+                <Dropdown.Item key={`city-${index + 1}`}><button type="button" onClick={() => { setSelectedCity(city); }}>{city}</button></Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
@@ -77,9 +113,10 @@ function ReservationForm() {
                   label="Select date"
                   value={reservationDate}
                   onAccept={(date) => {
-                    setReservationDate(date); console.log(date.$d.toDateString());
+                    setReservationDate(date);
+                    handleSubmit();
                   }}
-                  onClose={() => { setModalShow(false); }}
+                  onClose={() => { if (!isLoading) setModalShow(false); }}
                   shouldDisableDate={shouldDisableDate}
                 />
               </LocalizationProvider>

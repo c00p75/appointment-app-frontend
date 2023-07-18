@@ -16,3 +16,15 @@ export const getMyReservations = createAsyncThunk(
 );
 
 export default { getMyReservations };
+
+export const createReservation = createAsyncThunk(
+  'reservations/createReservations',
+  async (formData, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await axiosInstance.post(`${BASE_URL}reservations`, formData);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.statusText);
+    }
+  },
+);

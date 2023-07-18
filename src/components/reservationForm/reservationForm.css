@@ -19,6 +19,12 @@
   margin: auto;
   opacity: 0.2;
   filter: contrast(0.5);
+  animation: slide-in 0.5s ease-in-out;
+}
+
+@keyframes slide-in {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
 }
 
 #reservation-form h1 {
@@ -52,7 +58,7 @@
   font-weight: bold !important;
 }
 
-#reservation-form #dropdown-basic {
+#reservation-form .dropdown-basic {
   background: none !important;
   color: white !important;
 }

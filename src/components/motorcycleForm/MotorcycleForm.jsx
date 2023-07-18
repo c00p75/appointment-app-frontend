@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './motorcycleForm.css';
@@ -17,7 +15,6 @@ function MotorcycleForm() {
   const [purchaseFee, setPurchaseFee] = useState(0);
   const [amountPayable, setAmountPayable] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const loading = useSelector((state) => state.motorcycles.loading);
   const error1 = useSelector((state) => state.motorcycles.error);
   const error2 = useSelector((state) => state.users.loading);
 
