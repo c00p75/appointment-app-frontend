@@ -6,11 +6,6 @@
   height: 2rem;
 }
 
-/* .moto-photo {
-  height: 90%;
-  width: 90%;
-} */
-
 .slide {
   display: flex;
   flex-direction: column;
@@ -25,6 +20,4 @@
   height: 80%;
   margin: 0;
   padding: 0;
-
 }
-
