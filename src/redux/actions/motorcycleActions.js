@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../../config/axiosInstance';
+import axiosMultipartInstance from '../../config/axiosMultipartInstance';
 import { BASE_URL } from '../../constants';
 
 export const FETCH_MOTORCYCLES_SUCCESS = 'FETCH_MOTORCYCLES_SUCCESS';
@@ -57,6 +58,18 @@ export const deleteMotorcycle = createAsyncThunk(
       return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue({ ...error.response.data.error });
+    }
+  },
+);
+
+export const createMotorcycle = createAsyncThunk(
+  'motorcycles/createMotorcycle',
+  async (formData, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await axiosMultipartInstance.post(`${BASE_URL}motorcycles`, formData);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.statusText);
     }
   },
 );
