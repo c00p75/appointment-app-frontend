@@ -1,4 +1,4 @@
-// import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { isLoggedIn } from '../../services/users.services';
@@ -8,6 +8,7 @@ import LoginPopup from '../users/LoginPopUp';
 function NavBar() {
   const dispatch = useDispatch();
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -21,29 +22,73 @@ function NavBar() {
     setShowLoginPopup(false);
   };
 
+  const handleUnauthorizedClick = (link) => {
+    if (!isLoggedIn()) {
+      setShowLoginPopup(true);
+    } else {
+      navigate(link);
+    }
+  };
+
   return (
-    <div className="navbar">
-      {isLoggedIn() ? (
-        <div className="nav-links">
-          <button type="button" onClick={handleLogout}>
-            Logout
-          </button>
+    <div className="navbar boder border-dark">
+      <div className="nav-bar d-flex justify-content-between position-absolute p-3">
+        <div>
+          <i className="fa fa-align-justify" />
         </div>
-      ) : (
-        <div className="nav-bar d-flex justify-content-between position-absolute p-3">
-          <div>
-            <i className="fa fa-align-justify" />
-          </div>
-          <div>
-            <i className="fa fa-search" />
-            {/* <NavLink to="/login" className="btn ms-1">Login</NavLink> */}
+        <div>
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={() => handleUnauthorizedClick('/add-motorcycle')}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleUnauthorizedClick('/add-motorcycle');
+              }
+            }}
+          >
+            Add Motorcycle
+          </span>
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={() => handleUnauthorizedClick('/delete-motorcycle')}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleUnauthorizedClick('/delete-motorcycle');
+              }
+            }}
+          >
+            Delete Motorcycle
+          </span>
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={() => handleUnauthorizedClick('/add-reservation')}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleUnauthorizedClick('/add-reservation');
+              }
+            }}
+          >
+            Add Reservation
+          </span>
+          <i className="fa fa-search" />
+          {/* <NavLink to="/login" className="btn ms-1">Login</NavLink> */}
+          {isLoggedIn() ? (
+            <div className="nav-links">
+              <button type="button" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
+          ) : (
             <button type="button" className="login-btn" onClick={handleLoginClick}>
               Login
             </button>
-            {showLoginPopup && <LoginPopup handleClose={handleCloseLoginPopup} />}
-          </div>
+          )}
+          {showLoginPopup && <LoginPopup handleClose={handleCloseLoginPopup} />}
         </div>
-      )}
+      </div>
     </div>
   );
 }
