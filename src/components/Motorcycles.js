@@ -7,8 +7,9 @@ import { getMotorcycles } from '../redux/actions/motorcycleActions';
 import { selectMotorcycle } from '../redux/reducers/motorcyclesSlice';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
+import { BASE_URL } from '../constants';
 import './styles/motorcycles.css';
-import vespaImage from '../assets/images/vespa_gts_touring_300.jpg';
+// import vespaImage from '../assets/images/vespa_gts_touring_300.jpg';
 import facebook from '../assets/images/facebook.png';
 import twitter from '../assets/images/twitter.png';
 import instagram from '../assets/images/instagram.png';
@@ -36,8 +37,8 @@ function Motorcycles() {
         showStatus={false}
         showThumbs={false}
         infiniteLoop
-        // centerMode
-        // centerSlidePercentage={75}
+        centerMode
+        centerSlidePercentage={100}
         emulateTouch
       >
         {motorcycles.map((motorcycle) => (
@@ -50,7 +51,11 @@ function Motorcycles() {
             }}
             className="d-flex flex-column justify-content-center align-items-center btn moto-card"
           >
-            <img src={vespaImage} alt={motorcycle.model} className="moto-photo" />
+            <img
+              src={`${BASE_URL}${motorcycle.photo.url}`}
+              alt={motorcycle.model}
+              className="moto-photo"
+            />
             <h3 className="fs-1">{motorcycle.model}</h3>
             <p className="fs-6 text-secondary">{motorcycle.description}</p>
             <div className="d-flex flex-row gap-4">

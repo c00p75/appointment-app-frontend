@@ -6,11 +6,15 @@
   height: 2rem;
 }
 
-.moto-photo {
-  transform: scale(0.8);
-}
+/* .moto-photo {
+  height: 90%;
+  width: 90%;
+} */
 
 .slide {
+  display: flex;
+  flex-direction: column;
+  
   margin: 0;
   padding: 1rem;
   /* background-color: green; */
