@@ -4,6 +4,7 @@ import './motorcycleForm.css';
 import {
   FloatingLabel, Form, InputGroup, Button, Row, Col,
 } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { createMotorcycle } from '../../redux/actions/motorcycleActions';
 
 function MotorcycleForm() {
@@ -19,6 +20,7 @@ function MotorcycleForm() {
   const error2 = useSelector((state) => state.users.loading);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -30,7 +32,8 @@ function MotorcycleForm() {
     formData.append('motorcycle[purchase_fee]', purchaseFee);
     formData.append('motorcycle[amount_payable]', amountPayable);
     formData.append('motorcycle[photo]', photo);
-    await dispatch(createMotorcycle(formData));
+    const isSuccess = await dispatch(createMotorcycle(formData));
+    if (isSuccess.meta.requestStatus === 'fulfilled') { navigate('/motorcycles'); }
     setIsLoading(false);
   };
 

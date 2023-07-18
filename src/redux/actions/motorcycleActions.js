@@ -17,6 +17,7 @@ export const fetchMotorcycles = () => (dispatch) => {
       dispatch(fetchMotorcyclesSuccess(response.data));
     })
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.error('Error fetching motorcycles:', error);
     });
 };
