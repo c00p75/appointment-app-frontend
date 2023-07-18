@@ -1,0 +1,19 @@
+#motorcycle-form {
+  max-width: 700px;
+  border-radius: 5px;
+}
+
+#motorcycle-form label {
+  color: gray;
+}
+
+#amount-payable label::after {
+  background: none !important;
+}
+
+.form-header {
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 2em;
+}

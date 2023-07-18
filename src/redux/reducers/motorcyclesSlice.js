@@ -3,6 +3,7 @@ import {
   deleteMotorcycle,
   getMotorcycle,
   getMotorcycles,
+  createMotorcycle,
 } from '../actions/motorcycleActions';
 
 const initialState = {
@@ -69,6 +70,22 @@ const motorcyclesSlice = createSlice({
         loading: false,
         error: payload,
         selectedMotorcycle: null,
+      }))
+      .addCase(createMotorcycle.fulfilled, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: null,
+        motorcycles: payload,
+      }))
+      .addCase(createMotorcycle.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(createMotorcycle.rejected, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: payload,
+        motorcycles: null,
       }));
   },
 });
