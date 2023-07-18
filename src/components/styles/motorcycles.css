@@ -7,13 +7,13 @@
 }
 
 .moto-photo {
-  transform: scale(0.8);
+  height: auto;
+  width: auto;
 }
 
 .slide {
   margin: 0;
   padding: 1rem;
-  /* background-color: green; */
   height: 75vh;
 }
 

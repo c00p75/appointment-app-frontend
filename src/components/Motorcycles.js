@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-// import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import { getMotorcycles } from '../redux/actions/motorcycleActions';
-import { selectMotorcycle } from '../redux/reducers/motorcyclesSlice';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import './styles/motorcycles.css';
@@ -16,16 +14,11 @@ import instagram from '../assets/images/instagram.png';
 function Motorcycles() {
   const { motorcycles } = useSelector((state) => state.motorcycles);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getMotorcycles());
   }, [dispatch]);
-
-  const handleShowDetail = (id) => {
-    dispatch(selectMotorcycle(id));
-    navigate(`/motorcycles/${id}`);
-  };
 
   return (
     <div className="d-flex flex-column main-container pt-5">
@@ -41,18 +34,12 @@ function Motorcycles() {
         emulateTouch
       >
         {motorcycles.map((motorcycle) => (
-          <button
-            type="button"
-            key={motorcycle.id}
-            onClick={() => handleShowDetail(motorcycle.id)}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') handleShowDetail(motorcycle.id);
-            }}
-            className="d-flex flex-column justify-content-center align-items-center btn moto-card"
-          >
-            <img src={vespaImage} alt={motorcycle.model} className="moto-photo" />
-            <h3 className="fs-1">{motorcycle.model}</h3>
-            <p className="fs-6 text-secondary">{motorcycle.description}</p>
+          <div key={motorcycle.id} className="d-flex flex-column justify-content-center align-items-center btn moto-card">
+            <Link to={`/motorcycles/${motorcycle.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+              <img src={vespaImage} alt={motorcycle.model} className="moto-photo" />
+              <h3 className="fs-1">{motorcycle.model}</h3>
+              <p className="fs-6 text-secondary">{motorcycle.description}</p>
+            </Link>
             <div className="d-flex flex-row gap-4">
               <a href="https://www.facebook.com">
                 <img src={facebook} alt={motorcycle.model} className="social" />
@@ -64,7 +51,7 @@ function Motorcycles() {
                 <img src={instagram} alt={motorcycle.model} className="social" />
               </a>
             </div>
-          </button>
+          </div>
         ))}
       </Carousel>
     </div>
