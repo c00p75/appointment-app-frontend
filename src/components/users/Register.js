@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { registerUser } from '../../redux/actions/userActions';
 
-function Register() {
+function Register({ toggle }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState('');
@@ -61,10 +62,16 @@ function Register() {
       {error && <div className="error">{error}</div>}
       <div>
         <span>Already registered?</span>
-        <NavLink to="/login">Login</NavLink>
+        <button type="button" onClick={() => toggle()}>
+          Login
+        </button>
       </div>
     </section>
   );
 }
+
+Register.propTypes = {
+  toggle: PropTypes.func.isRequired,
+};
 
 export default Register;
