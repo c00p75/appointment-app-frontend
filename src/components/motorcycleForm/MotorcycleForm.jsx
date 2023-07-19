@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './motorcycleForm.css';
 import {
-  FloatingLabel, Form, InputGroup, Button, Row, Col,
+  FloatingLabel, Form, InputGroup, Button, Row, Col, Toast,
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { createMotorcycle } from '../../redux/actions/motorcycleActions';
+import { isLoggedIn } from '../../services/users.services';
 
 function MotorcycleForm() {
   const [model, setModel] = useState(null);
@@ -16,13 +17,14 @@ function MotorcycleForm() {
   const [purchaseFee, setPurchaseFee] = useState(0);
   const [amountPayable, setAmountPayable] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const error1 = useSelector((state) => state.motorcycles.error);
-  const error2 = useSelector((state) => state.users.loading);
+  const responseError = useSelector((state) => state.motorcycles.error);
+  const [error, setError] = useState(!isLoggedIn());
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
     setIsLoading(true);
     const formData = new FormData();
     formData.append('motorcycle[model]', model);
@@ -33,31 +35,32 @@ function MotorcycleForm() {
     formData.append('motorcycle[amount_payable]', amountPayable);
     formData.append('motorcycle[photo]', photo);
     const isSuccess = await dispatch(createMotorcycle(formData));
+    if (responseError) { setError(true); }
     if (isSuccess.meta.requestStatus === 'fulfilled') { navigate('/motorcycles'); }
     setIsLoading(false);
   };
 
   return (
-    <div className="bg-success-subtle p-5">
+    <div className="bg-success-subtle p-sm-5">
       <h1 className="text-center mb-3 form-header">Add Motorcycle</h1>
-      <div className="container bg-white p-3" id="motorcycle-form">
+      <div className="m-auto bg-white p-3 overflow-auto" id="motorcycle-form">
         <Form onSubmit={(e) => handleSubmit(e)}>
           <FloatingLabel controlId="floatingTextarea" label="Model" className="py-3">
-            <Form.Control placeholder="Model" onChange={(e) => setModel(e.target.value)} />
+            <Form.Control placeholder="Model" required onChange={(e) => setModel(e.target.value)} />
           </FloatingLabel>
 
           <FloatingLabel controlId="floatingTextarea2" label="Description" className="py-3">
-            <Form.Control as="textarea" placeholder="Description" style={{ height: '100px' }} onChange={(e) => setDescription(e.target.value)} />
+            <Form.Control as="textarea" placeholder="Description" required style={{ height: '100px' }} onChange={(e) => setDescription(e.target.value)} />
           </FloatingLabel>
 
           <FloatingLabel controlId="formImg" label="Upload Image" className="mb-2 py-3">
-            <Form.Control type="file" accept="image/*" onChange={(e) => setPhoto(e.target.files[0])} />
+            <Form.Control type="file" accept="image/*" required onChange={(e) => setPhoto(e.target.files[0])} />
           </FloatingLabel>
 
           <InputGroup className="mb-4">
             <InputGroup.Text>Days</InputGroup.Text>
             <FloatingLabel controlId="floatingAmount3" label="Duration">
-              <Form.Control type="number" aria-label="Duration" onChange={(e) => setDuration(e.target.value)} />
+              <Form.Control type="number" required aria-label="Duration" onChange={(e) => setDuration(e.target.value)} />
             </FloatingLabel>
           </InputGroup>
           <Row>
@@ -68,6 +71,7 @@ function MotorcycleForm() {
                   <Form.Control
                     aria-label="Amount"
                     type="number"
+                    required
                     onChange={(e) => {
                       if (e.target.value) {
                         setFinanceFee(parseFloat(e.target.value));
@@ -88,6 +92,7 @@ function MotorcycleForm() {
                 <FloatingLabel controlId="floatingAmount2" label="Purchase Fee">
                   <Form.Control
                     aria-label="Amount"
+                    required
                     type="number"
                     onChange={(e) => {
                       if (e.target.value) {
@@ -114,8 +119,15 @@ function MotorcycleForm() {
           <Button variant="success" disabled={isLoading} type="submit">
             Submit
           </Button>
-          {error1 && (<p>{error1}</p>)}
-          {!error2 && (<p>User not logged in</p>)}
+          <Toast show={error} onClose={() => setError(false)} className="mt-3 bg-danger-subtle" style={{ width: '100%' }}>
+            <Toast.Header>
+              <strong className="me-auto">Error</strong>
+            </Toast.Header>
+            <Toast.Body>
+              {!isLoggedIn() && (<p>User not logged in</p>)}
+              {responseError && (<p>{responseError}</p>)}
+            </Toast.Body>
+          </Toast>
         </Form>
 
       </div>
