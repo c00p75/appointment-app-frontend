@@ -1,10 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   deleteMotorcycle,
   getMotorcycle,
 } from '../../redux/actions/motorcycleActions';
+import { isLoggedIn } from '../../services/users.services';
+import LoginPopup from '../users/LoginPopUp';
 
 function Motorcycle() {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ function Motorcycle() {
 
   // to ensure component do not refetch the motorcycle after delete
   const canFetchMotorcycleRef = useRef(true);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   useEffect(() => {
     if (canFetchMotorcycleRef && !selectedMotorcycle) {
@@ -30,6 +33,14 @@ function Motorcycle() {
     });
   };
 
+  const handleAddReservation = () => {
+    if (isLoggedIn()) {
+      navigate(`/motorcycles/${motorId}/reserve`);
+    } else {
+      setShowLoginPopup(true);
+    }
+  };
+
   if (selectedMotorcycle) {
     return (
       <div>
@@ -38,6 +49,10 @@ function Motorcycle() {
         <button type="button" onClick={handleDelete}>
           Delete
         </button>
+        <button type="button" onClick={handleAddReservation}>
+          Add Reservation
+        </button>
+        {showLoginPopup && <LoginPopup handleClose={() => setShowLoginPopup(false)} />}
       </div>
     );
   }
