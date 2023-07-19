@@ -7,6 +7,8 @@ import {
 } from '../../redux/actions/motorcycleActions';
 import { isLoggedIn } from '../../services/users.services';
 import LoginPopup from '../users/LoginPopUp';
+import { BASE_URL } from '../../constants';
+import MotorcycleDetail from './MotorcycleDetail';
 
 function Motorcycle() {
   const dispatch = useDispatch();
@@ -35,7 +37,7 @@ function Motorcycle() {
 
   const handleAddReservation = () => {
     if (isLoggedIn()) {
-      navigate(`/motorcycles/${motorId}/reserve`);
+      navigate('/reserve');
     } else {
       setShowLoginPopup(true);
     }
@@ -43,16 +45,29 @@ function Motorcycle() {
 
   if (selectedMotorcycle) {
     return (
-      <div>
-        <h3>{selectedMotorcycle.model}</h3>
-        <p>{selectedMotorcycle.description}</p>
-        <button type="button" onClick={handleDelete}>
-          Delete
-        </button>
-        <button type="button" onClick={handleAddReservation}>
-          Add Reservation
-        </button>
-        {showLoginPopup && <LoginPopup handleClose={() => setShowLoginPopup(false)} />}
+      <div id="motorcycle-show" className="row">
+        <div className="col-8">
+          <img
+            src={`${BASE_URL}${selectedMotorcycle.photo.url}`}
+            alt={selectedMotorcycle.model}
+            className="moto-photo"
+          />
+          <button
+            type="button"
+            className="btn-action btn-nav-left"
+            onClick={() => navigate('/motorcycles')}
+          >
+            <i className="fa fa-caret-left" />
+          </button>
+        </div>
+        <MotorcycleDetail
+          handleDelete={handleDelete}
+          handleAddReservation={handleAddReservation}
+          selectedMotorcycle={selectedMotorcycle}
+        />
+        {showLoginPopup && (
+          <LoginPopup handleClose={() => setShowLoginPopup(false)} />
+        )}
       </div>
     );
   }

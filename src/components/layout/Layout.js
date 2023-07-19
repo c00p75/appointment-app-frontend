@@ -5,7 +5,7 @@ function Layout() {
   return (
     <>
       <NavBar />
-      <section className="section">
+      <section className="section container-fluid">
         <Outlet />
       </section>
     </>

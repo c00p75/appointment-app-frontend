@@ -36,7 +36,7 @@ function NavBar() {
         <div>
           <i className="fa fa-align-justify" />
         </div>
-        <div>
+        <div className="d-flex g-5">
           <span
             role="button"
             tabIndex={0}
@@ -76,13 +76,15 @@ function NavBar() {
           <i className="fa fa-search" />
           {/* <NavLink to="/login" className="btn ms-1">Login</NavLink> */}
           {isLoggedIn() ? (
-            <div className="nav-links">
-              <button type="button" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
+            <button className="nav-links" type="button" onClick={handleLogout}>
+              Logout
+            </button>
           ) : (
-            <button type="button" className="login-btn" onClick={handleLoginClick}>
+            <button
+              type="button"
+              className="login-btn"
+              onClick={handleLoginClick}
+            >
               Login
             </button>
           )}
