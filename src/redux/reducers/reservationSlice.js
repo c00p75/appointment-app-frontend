@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getMyReservations } from '../actions/reservationActions';
+import { createReservation, getMyReservations } from '../actions/reservationActions';
 
 const initialState = {
   reservations: [],
@@ -27,6 +27,22 @@ const myReservationsSlice = createSlice({
         ...state,
         loading: false,
         error: payload,
+      }))
+      .addCase(createReservation.fulfilled, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: null,
+        reservations: payload,
+      }))
+      .addCase(createReservation.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(createReservation.rejected, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: payload,
+        reservations: null,
       }));
   },
 });
