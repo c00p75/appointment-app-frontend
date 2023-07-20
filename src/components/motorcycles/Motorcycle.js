@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -6,9 +6,10 @@ import {
   getMotorcycle,
 } from '../../redux/actions/motorcycleActions';
 import { isLoggedIn } from '../../services/users.services';
-import LoginPopup from '../users/LoginPopUp';
-import { BASE_URL } from '../../constants';
+import { BASE_URL, POPUP_ALERT, POPUP_AUTH } from '../../constants';
 import MotorcycleDetail from './MotorcycleDetail';
+import { setPopup } from '../../redux/reducers/popupSlice';
+import { popupHelper } from '../../helpers';
 
 function Motorcycle() {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ function Motorcycle() {
 
   // to ensure component do not refetch the motorcycle after delete
   const canFetchMotorcycleRef = useRef(true);
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
 
   useEffect(() => {
     if (canFetchMotorcycleRef && !selectedMotorcycle) {
@@ -30,7 +30,14 @@ function Motorcycle() {
   }, [dispatch, selectedMotorcycle, motorId]);
 
   const handleDelete = () => {
-    dispatch(deleteMotorcycle(motorId)).then(() => {
+    const deleteError = 'You are not allowed to delete this item!';
+    dispatch(deleteMotorcycle(motorId)).then(({ error }) => {
+      if (error) {
+        if (error.message === 'Rejected') {
+          dispatch(setPopup(popupHelper(POPUP_ALERT, deleteError)));
+        } else dispatch(setPopup(popupHelper(POPUP_ALERT, 'Some error occured!')));
+        return;
+      }
       navigate('/motorcycles');
     });
   };
@@ -39,7 +46,7 @@ function Motorcycle() {
     if (isLoggedIn()) {
       navigate('/reserve');
     } else {
-      setShowLoginPopup(true);
+      dispatch(setPopup(popupHelper(POPUP_AUTH)));
     }
   };
 
@@ -65,9 +72,6 @@ function Motorcycle() {
           handleAddReservation={handleAddReservation}
           selectedMotorcycle={selectedMotorcycle}
         />
-        {showLoginPopup && (
-          <LoginPopup handleClose={() => setShowLoginPopup(false)} />
-        )}
       </div>
     );
   }

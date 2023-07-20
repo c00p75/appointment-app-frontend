@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../redux/actions/userActions';
 
 function Register({ toggle }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [error, setError] = useState('');
 
   const handleRegister = (e) => {
@@ -38,8 +36,12 @@ function Register({ toggle }) {
       password,
     };
 
-    dispatch(registerUser(userData)).then(() => {
-      navigate('/login');
+    dispatch(registerUser(userData)).then(({ error }) => {
+      if (error) {
+        setError('Rejected');
+        return;
+      }
+      toggle();
     });
   };
 

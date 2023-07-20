@@ -1,12 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../redux/actions/userActions';
 
-function Login({ toggle }) {
+function Login({ handleClose, toggle }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
@@ -24,8 +22,12 @@ function Login({ toggle }) {
     e.target.reset();
     setError('');
 
-    dispatch(loginUser({ email, password })).then(() => {
-      navigate('/motorcycles');
+    dispatch(loginUser({ email, password })).then(({ error }) => {
+      if (error) {
+        setError('Rejected');
+        return;
+      }
+      handleClose();
     });
   };
 
@@ -69,6 +71,7 @@ function Login({ toggle }) {
 
 Login.propTypes = {
   toggle: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default Login;
