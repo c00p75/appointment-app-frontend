@@ -3,7 +3,6 @@
 }
 
 
-/* Set maximum height for the carousel slides */
 .slide {
   display: flex;
   flex-direction: column;
@@ -12,19 +11,29 @@
   height: 80vh;
 }
 
-
-/* Adjust slide size on larger screens using media query */
-@media (min-width: 992px) {
-  .slide {
-    max-height: 80vh; /* Reduce the maximum height for larger screens */
-  }
+.carousel .control-arrow {
+  opacity: 1;
+  pointer-events: auto; /* Allow click events on arrows */
+  transition: none; /* Disable any transitions */
 }
 
-/* @media (min-width: 1200px) {
-  .slide {
-    max-height: 80vh; 
-  }
-} */
+.carousel.carousel-slider .control-arrow {
+  height: 3rem;
+  width: 5rem;
+  background: rgb(47 206 7);
+  margin-top: 30vh;
+}
+
+.control-prev {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.control-next {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
 
 .moto-photo {
   max-width: 60vw;
@@ -36,4 +45,11 @@
 .social {
   height: 2rem;
 }
+
+@media (width >= 992px) {
+  .slide {
+    max-height: 80vh; /* Reduce the maximum height for larger screens */
+  }
+}
+
 
