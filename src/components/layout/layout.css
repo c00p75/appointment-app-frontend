@@ -1,0 +1,117 @@
+.app-navigation-bar {
+  position: fixed;
+  width: 100vw;
+  height: 4em;
+  z-index: 5;
+  transition: all 0.3s ease-in-out;
+}
+
+.app-navigation-bar button {
+  position: absolute;
+  top: 0.5em;
+  border: none;
+  z-index: 5;
+}
+
+.app-navigation-bar > button:first-child {
+  left: 1em;
+  background: none;
+}
+
+.app-navigation-bar > button:last-child {
+  right: 2em;
+  margin-top: 0.5em;
+  background: white;
+  border-radius: 30px;
+  padding: 0.3em 0.5em;
+}
+
+.nav-scrolled {
+  background-color: white;
+  box-shadow: 0 4px 4px -4px #00000080;
+}
+
+.side-bar-container {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  height: 100vh;
+  background: white;
+  box-shadow: 3px 0 5px -5px white;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  padding: 3em 0;
+}
+
+.side-bar {
+  margin-top: 5em;
+}
+
+.display-sidebar {
+  width: 15em;
+  box-shadow: 3px 0 5px -5px gray;
+  opacity: 1;
+}
+
+.hide-sidebar {
+  width: 0;
+}
+
+main > section:last-child {
+  width: 100%;
+}
+
+.app-navigation {
+  height: 100%;
+  position: relative;
+}
+
+.app-navigation span {
+  font-weight: bold;
+  width: 100%;
+  margin: 0.25em 0;
+  padding: 0.5em;
+  letter-spacing: 0.8px;
+}
+
+.app-navigation span:hover {
+  background: rgb(173 255 47 / 30%);
+}
+
+.app-navigation span.active {
+  color: white;
+  background: yellowgreen;
+}
+
+.login-btn {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 768px) {
+  .side-bar-container {
+    position: fixed;
+    height: 100%;
+    padding-top: 6em;
+    padding-bottom: 2em;
+    overflow: auto;
+  }
+
+  .display-sidebar {
+    width: 100%;
+    box-shadow: 3px 0 5px -5px gray;
+    opacity: 1;
+  }
+
+  .login-btn {
+    position: relative;
+    width: 100%;
+    bottom: 0;
+  }
+
+  .app-navigation-bar > button:last-child {
+    right: 1em;
+  }
+}

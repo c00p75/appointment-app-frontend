@@ -1,9 +1,8 @@
 #reservation-form {
   background-color: #8ab30e;
   color: white;
-  position: fixed;
+  position: relative;
   height: 100vh;
-  width: 100vw;
   overflow: hidden;
   text-align: center;
 }

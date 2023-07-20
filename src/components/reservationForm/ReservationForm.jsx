@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import './reservationForm.css';
 import { Dropdown, Modal, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
@@ -60,10 +59,10 @@ function ReservationForm() {
   };
 
   return (
-    <div id="reservation-form">
+    <div id="reservation-form" className="flex-center">
       {!motorcycle.photo && (<img src="https://www.onlygfx.com/wp-content/uploads/2017/03/motorcycle-silhouette-5-1024x604.png" alt="pic" className="reservation-item" />)}
       {motorcycle.photo && (<img src={BASE_URL + motorcycle.photo.url} alt="pic" className="reservation-item" />)}
-      <div className="container position-absolute d-flex flex-column justify-content-center align-items-center overflow-auto">
+      <div className="container position-absolute flex-center flex-column overflow-auto">
         <h1>{motorcycle.model ? `Book a ${motorcycle.model}` : 'Book a motorcycle'}</h1>
         <span className="divide" />
         <p>{motorcycle.description}</p>
