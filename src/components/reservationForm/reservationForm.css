@@ -44,7 +44,7 @@
 
 #reservation-form p {
   line-height: 1.8em;
-  max-width: 850px
+  max-width: 850px;
 }
 
 #reservation-form .form-btn {
@@ -57,7 +57,7 @@
   font-weight: bold !important;
 }
 
-#reservation-form .dropdown{
+#reservation-form .dropdown {
   display: flex;
   justify-content: center;
   align-items: center;
