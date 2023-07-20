@@ -12,7 +12,7 @@
 
 .carousel .control-arrow {
   opacity: 1;
-  pointer-events: auto; 
+  pointer-events: auto;
   transition: none;
 }
 
