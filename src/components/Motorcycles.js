@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import { useNavigate, Link } from 'react-router-dom';
@@ -14,9 +14,15 @@ import twitter from '../assets/images/twitter.png';
 import instagram from '../assets/images/instagram.png';
 
 function Motorcycles() {
+  function getCenterSlidePercentage() {
+    return window.innerWidth >= 992 ? 33 : 100;
+  }
+
   const { motorcycles } = useSelector((state) => state.motorcycles);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [centerSlidePercentage, setCenterSlidePercentage] = useState(getCenterSlidePercentage());
 
   useEffect(() => {
     dispatch(getMotorcycles());
@@ -27,22 +33,30 @@ function Motorcycles() {
     navigate(`/motorcycles/${id}`);
   };
 
-  // Additional check to ensure motorcycles is an array
-  if (!Array.isArray(motorcycles)) {
-    return <div>Loading</div>;
-  }
+  useEffect(() => {
+    function handleResize() {
+      setCenterSlidePercentage(getCenterSlidePercentage());
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="d-flex flex-column main-container pt-5">
       <h1 className="text-center fw-bold fs-12">LATEST MODELS</h1>
       <p className="text-center text-secondary">Please select a Vespa Model</p>
+      {Array.isArray(motorcycles) && motorcycles.length > 0 && (
       <Carousel
         showArrows
         showStatus={false}
         showThumbs={false}
-        infiniteLoop
+        infiniteLoop={false}
         centerMode
-        centerSlidePercentage={100}
+        centerSlidePercentage={centerSlidePercentage}
         emulateTouch
       >
         {motorcycles.map((motorcycle) => (
@@ -55,11 +69,13 @@ function Motorcycles() {
             }}
             className="d-flex flex-column justify-content-center align-items-center btn moto-card"
           >
-            <img
-              src={`${BASE_URL}${motorcycle.photo.url}`}
-              alt={motorcycle.model}
-              className="moto-photo"
-            />
+            <div className="h-60vh">
+              <img
+                src={`${BASE_URL}${motorcycle.photo.url}`}
+                alt={motorcycle.model}
+                className="moto-photo"
+              />
+            </div>
             <h3 className="fs-1">{motorcycle.model}</h3>
             <p className="fs-6 text-secondary">{motorcycle.description}</p>
             <div className="d-flex flex-row gap-4">
@@ -76,6 +92,7 @@ function Motorcycles() {
           </button>
         ))}
       </Carousel>
+      )}
     </div>
   );
 }
