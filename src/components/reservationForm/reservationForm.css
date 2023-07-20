@@ -1,10 +1,10 @@
 #reservation-form {
   background-color: #8ab30e;
   color: white;
-  position: fixed;
+  position: relative;
   height: 100vh;
-  width: 100vw;
   overflow: hidden;
+  text-align: center;
 }
 
 #reservation-form > .container {
@@ -15,7 +15,7 @@
 #reservation-form .reservation-item {
   position: fixed;
   inset: 0;
-  height: 115vh;
+  width: 100vw;
   margin: auto;
   opacity: 0.2;
   filter: contrast(0.5);
@@ -43,19 +43,24 @@
 }
 
 #reservation-form p {
-  width: 70%;
-  text-align: center;
   line-height: 1.8em;
+  max-width: 850px
 }
 
 #reservation-form .form-btn {
-  min-width: 12em;
-  margin: 1em !important;
+  width: 12em;
+  margin: 1em;
   border: none !important;
   border-radius: 30px !important;
   padding: 0.7em 1em !important;
   box-shadow: 0 0 1px 2px white;
   font-weight: bold !important;
+}
+
+#reservation-form .dropdown{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #reservation-form .dropdown-basic {
@@ -73,7 +78,8 @@
 }
 
 #reservation-form .dropdown-menu {
-  min-width: 12em !important;
+  max-height: 50vh;
+  min-width: 12em;
   overflow: auto;
 }
 
@@ -81,11 +87,15 @@
   background: none;
   border: 0;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x) !important;
   width: 100%;
   height: 100%;
   box-shadow: none !important;
   font-weight: normal !important;
+}
+
+#reservation-form .dropdown-item {
+  padding: 0;
 }
 
 #reservation-form .modal-content {
