@@ -9,7 +9,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import { BASE_URL } from '../constants';
 import './styles/motorcycles.css';
-// import vespaImage from '../assets/images/vespa_gts_touring_300.jpg';
 import facebook from '../assets/images/facebook.png';
 import twitter from '../assets/images/twitter.png';
 import instagram from '../assets/images/instagram.png';
@@ -27,6 +26,11 @@ function Motorcycles() {
     dispatch(selectMotorcycle(id));
     navigate(`/motorcycles/${id}`);
   };
+
+  // Additional check to ensure motorcycles is an array
+  if (!Array.isArray(motorcycles)) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className="d-flex flex-column main-container pt-5">
