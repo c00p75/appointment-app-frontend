@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Login from './Login';
 import Register from './Register';
@@ -7,6 +7,14 @@ function LoginPopup({ handleClose }) {
   const [isLogin, setIsLogin] = useState(true);
 
   const handleToggle = () => setIsLogin(!isLogin);
+
+  useEffect(() => {
+    function cleanup() {
+      handleClose();
+    }
+
+    return cleanup;
+  }, [handleClose]);
 
   return (
     <div
