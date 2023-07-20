@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Login from './Login';
-import Register from './Register';
+import { useSelector } from 'react-redux';
+import AuthPopup from '../users/AuthPopUp';
+import { POPUP_AUTH } from '../../constants';
 
-function LoginPopup({ handleClose }) {
-  const [isLogin, setIsLogin] = useState(true);
-
-  const handleToggle = () => setIsLogin(!isLogin);
-
-  useEffect(() => {
-    function cleanup() {
-      handleClose();
-    }
-
-    return cleanup;
-  }, [handleClose]);
+function Popup({ handleClose }) {
+  const { context, message } = useSelector((store) => store.popup);
 
   return (
     <div
@@ -32,18 +23,23 @@ function LoginPopup({ handleClose }) {
         >
           Close
         </button>
-        {isLogin ? (
-          <Login handleClose={handleClose} toggle={handleToggle} />
+        {context === POPUP_AUTH ? (
+          <AuthPopup handleClose={handleClose} />
         ) : (
-          <Register handleClose={handleClose} toggle={handleToggle} />
+          <div>
+            <p>{message}</p>
+            <button type="button" onClick={handleClose}>
+              Ok
+            </button>
+          </div>
         )}
       </div>
     </div>
   );
 }
 
-LoginPopup.propTypes = {
+Popup.propTypes = {
   handleClose: PropTypes.func.isRequired,
 };
 
-export default LoginPopup;
+export default Popup;
