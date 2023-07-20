@@ -2,7 +2,6 @@
   height: 70vh;
 }
 
-
 .slide {
   display: flex;
   flex-direction: column;
@@ -13,8 +12,8 @@
 
 .carousel .control-arrow {
   opacity: 1;
-  pointer-events: auto; /* Allow click events on arrows */
-  transition: none; /* Disable any transitions */
+  pointer-events: auto; 
+  transition: none;
 }
 
 .carousel.carousel-slider .control-arrow {
@@ -34,7 +33,6 @@
   border-bottom-right-radius: 2rem;
 }
 
-
 .moto-photo {
   max-width: 60vw;
   max-height: 60vh;
@@ -46,10 +44,9 @@
   height: 2rem;
 }
 
-@media (width >= 992px) {
+@media (width >= 800px) {
   .slide {
-    max-height: 80vh; /* Reduce the maximum height for larger screens */
+    max-height: 80vh;
+    width: min-content;
   }
 }
-
-
