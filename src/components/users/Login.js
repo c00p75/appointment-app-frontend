@@ -1,11 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { loginUser } from '../../redux/actions/userActions';
 
-function Login() {
+function Login({ handleClose, toggle }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
@@ -23,27 +22,56 @@ function Login() {
     e.target.reset();
     setError('');
 
-    dispatch(loginUser({ email, password })).then(() => {
-      navigate('/motorcycles');
+    dispatch(loginUser({ email, password })).then(({ error }) => {
+      if (error) {
+        setError('Rejected');
+        return;
+      }
+      handleClose();
     });
   };
 
   return (
-    <section id="login" className="d-flex flex-column justify-content-center align-items-center">
+    <section
+      id="login"
+      className="d-flex flex-column justify-content-center align-items-center"
+    >
       <h1 className="mb-3">Login</h1>
-      <form className="d-flex flex-column justify-content-center align-items-center" onSubmit={handleSubmit}>
-        <input name="email" type="text" placeholder="Email" className="border border-none" />
-        <input name="password" type="text" placeholder="Password" className="border border-none" />
+      <form
+        className="d-flex flex-column justify-content-center align-items-center"
+        onSubmit={handleSubmit}
+      >
+        <input
+          name="email"
+          type="text"
+          placeholder="Email"
+          className="border border-none fs-5"
+        />
+        <input
+          name="password"
+          type="text"
+          placeholder="Password"
+          className="border border-none fs-5"
+        />
 
-        <button type="submit" className="my-3">Login</button>
+        <button type="submit" className="my-3">
+          Login
+        </button>
       </form>
       {error && <div className="error">{error}</div>}
       <div>
         <span>Are you new? </span>
-        <NavLink to="/register">Register</NavLink>
+        <button type="button" onClick={() => toggle()}>
+          Register
+        </button>
       </div>
     </section>
   );
 }
+
+Login.propTypes = {
+  toggle: PropTypes.func.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};
 
 export default Login;

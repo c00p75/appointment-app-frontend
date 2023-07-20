@@ -1,30 +1,37 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { isLoggedIn } from '../../services/users.services';
 import { logoutUser } from '../../redux/actions/userActions';
-import LoginPopup from '../users/LoginPopUp';
+import { closePopup, setPopup } from '../../redux/reducers/popupSlice';
+import { popupHelper } from '../../helpers';
+import { POPUP_AUTH } from '../../constants';
+import Popup from '../common/Popup';
 
 function NavBar() {
   const dispatch = useDispatch();
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [loginState, setLoginState] = useState(isLoggedIn());
   const navigate = useNavigate();
+
+  const { showPopup } = useSelector((store) => store.popup);
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    setLoginState(isLoggedIn());
   };
 
   const handleLoginClick = () => {
-    setShowLoginPopup(true);
+    dispatch(setPopup(popupHelper(POPUP_AUTH)));
   };
 
-  const handleCloseLoginPopup = () => {
-    setShowLoginPopup(false);
+  const handleClosePopup = () => {
+    dispatch(closePopup());
+    setLoginState(isLoggedIn());
   };
 
   const handleUnauthorizedClick = (link) => {
     if (!isLoggedIn()) {
-      setShowLoginPopup(true);
+      dispatch(setPopup(popupHelper(POPUP_AUTH)));
     } else {
       navigate(link);
     }
@@ -36,7 +43,7 @@ function NavBar() {
         <div>
           <i className="fa fa-align-justify" />
         </div>
-        <div>
+        <div className="d-flex g-5">
           <span
             role="button"
             tabIndex={0}
@@ -74,19 +81,20 @@ function NavBar() {
             Add Reservation
           </span>
           <i className="fa fa-search" />
-          {/* <NavLink to="/login" className="btn ms-1">Login</NavLink> */}
-          {isLoggedIn() ? (
-            <div className="nav-links">
-              <button type="button" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
+          {loginState ? (
+            <button className="nav-links" type="button" onClick={handleLogout}>
+              Logout
+            </button>
           ) : (
-            <button type="button" className="login-btn" onClick={handleLoginClick}>
+            <button
+              type="button"
+              className="login-btn"
+              onClick={handleLoginClick}
+            >
               Login
             </button>
           )}
-          {showLoginPopup && <LoginPopup handleClose={handleCloseLoginPopup} />}
+          {showPopup && <Popup handleClose={handleClosePopup} />}
         </div>
       </div>
     </div>

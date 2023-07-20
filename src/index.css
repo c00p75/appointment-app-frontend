@@ -42,3 +42,40 @@ select ::after {
   background: red;
   color: red;
 }
+
+#motorcycle-show {
+  height: 100vh;
+}
+
+#motorcycle-show > * {
+  height: 100%;
+}
+
+#motorcycle-show img {
+  width: inherit;
+}
+
+.btn-action {
+  height: 50px;
+  border: transparent;
+  color: white;
+  background-color: var(--main-bkg);
+  border-radius: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: fit-content;
+}
+
+.btn-nav-left {
+  width: 80px;
+  position: absolute;
+  left: 0;
+  bottom: 50px;
+  padding-right: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+:root {
+  --main-bkg: #8ab30e;
+}
