@@ -55,11 +55,13 @@ function Motorcycles() {
             }}
             className="d-flex flex-column justify-content-center align-items-center btn moto-card"
           >
-            <img
-              src={`${BASE_URL}${motorcycle.photo.url}`}
-              alt={motorcycle.model}
-              className="moto-photo"
-            />
+            <div className="h-60vh">
+              <img
+                src={`${BASE_URL}${motorcycle.photo.url}`}
+                alt={motorcycle.model}
+                className="moto-photo"
+              />
+            </div>
             <h3 className="fs-1">{motorcycle.model}</h3>
             <p className="fs-6 text-secondary">{motorcycle.description}</p>
             <div className="d-flex flex-row gap-4">
