@@ -30,8 +30,16 @@ function ReservationForm() {
     dispatch(getMotorcycles());
   }, [dispatch]);
 
-  const { motorcycles } = useSelector((state) => state.motorcycles);
+  const { motorcycles, selectedMotorcycle: bike } = useSelector((state) => state.motorcycles);
+  const selectedMotorcycle = JSON.stringify(bike || {});
+
   const [motorcycle, setMotorcycle] = useState('');
+  useEffect(() => {
+    const selectedBike = JSON.parse(selectedMotorcycle);
+    if (!selectedBike?.id) return;
+    setMotorcycle(selectedBike);
+  }, [selectedMotorcycle]);
+
   const [selectedCity, setSelectedCity] = useState('');
   const [reservationDate, setReservationDate] = useState(dayjs());
   const [modalShow, setModalShow] = useState(false);
