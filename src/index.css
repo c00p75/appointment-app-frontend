@@ -13,6 +13,13 @@ body {
   right: 0;
 }
 
+.auth-toggle {
+  border: none;
+  background-color: transparent;
+  color: var(--main-bkg);
+  margin-left: -2em;
+}
+
 .reserve-form {
   height: calc(100vh - 20px);
 }

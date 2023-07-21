@@ -61,7 +61,7 @@ function Login({ handleClose, toggle }) {
       {error && <div className="error">{error}</div>}
       <div>
         <span>Are you new? </span>
-        <button type="button" onClick={() => toggle()}>
+        <button className="auth-toggle" type="button" onClick={() => toggle()}>
           Register
         </button>
       </div>

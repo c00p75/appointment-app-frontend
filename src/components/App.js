@@ -12,6 +12,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route index element={<Motorcycles />} />
         <Route path="/motorcycles" element={<Motorcycles />} />
         <Route path="/motorcycles/new" element={<MotorcycleForm />} />
         <Route path="/motorcycles/delete" element={<MotorcycleDeleteForm />} />
