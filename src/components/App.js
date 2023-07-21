@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Motorcycles from './Motorcycles';
 import Layout from './layout/Layout';
 import Motorcycle from './motorcycles/Motorcycle';
@@ -20,6 +20,7 @@ function App() {
         <Route path="/reservations/new" element={<ReserveForm />} />
         <Route path="/motorcycles/:id" element={<Motorcycle />} />
         {/* Add your routes here! */}
+        <Route path="*" element={<Navigate to="/motorcycles" />} />
       </Route>
     </Routes>
   );
