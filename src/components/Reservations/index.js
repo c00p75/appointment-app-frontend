@@ -19,20 +19,20 @@ export default function Reservations() {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Reserve No</th>
               <th scope="col">Motorcycle</th>
               <th scope="col">City</th>
               <th scope="col">Date</th>
+              <th scope="col">Reserve Id</th>
             </tr>
           </thead>
           <tbody>
             {reservations.map((reservation, index) => (
               <tr key={reservation.id}>
                 <th scope="row">{index + 1}</th>
-                <th>{reservation.id}</th>
                 <td>{reservation.motorcycle.model}</td>
                 <td>{reservation.city}</td>
                 <td>{reservation.date}</td>
+                <th>{reservation.id}</th>
               </tr>
             ))}
           </tbody>
