@@ -5,9 +5,10 @@
 .slide {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 80vh;
+  padding: 1rem;
 }
 
 .carousel .control-arrow {
@@ -23,30 +24,39 @@
   margin-top: 30vh;
 }
 
-.control-prev {
+.control-next {
   border-top-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
 }
 
-.control-next {
+.control-prev {
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
 }
 
 .moto-photo {
-  max-width: 60vw;
-  max-height: 60vh;
+  margin-top: 3rem;
+  max-width: 50vw;
+  max-height: 50vh;
   width: auto;
   height: auto;
 }
 
 .social {
-  height: 2rem;
+  height: 3rem;
 }
 
 @media (width >= 800px) {
   .slide {
     max-height: 80vh;
     width: min-content;
+  }
+
+  .moto-photo {
+    margin-top: 6rem;
+    max-width: 40vw;
+    max-height: 40vh;
+    width: auto;
+    height: auto;
   }
 }
