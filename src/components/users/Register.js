@@ -46,25 +46,54 @@ function Register({ toggle }) {
   };
 
   return (
-    <section id="register">
-      <h1>REGISTER</h1>
-      <form onSubmit={handleRegister}>
-        <input name="name" type="text" placeholder="Name" />
-        <input name="username" type="text" placeholder="Username" />
-        <input name="email" type="text" placeholder="Email" />
-        <input name="password" type="text" placeholder="Password" />
+    <section
+      id="register"
+      className="d-flex flex-column justify-content-center align-items-center"
+    >
+      <h1 className="mb-3">REGISTER</h1>
+      <form
+        className="d-flex flex-column justify-content-center align-items-center"
+        onSubmit={handleRegister}
+      >
+        <input
+          name="name"
+          type="text"
+          placeholder="Name"
+          className="border border-none fs-5"
+        />
+        <input
+          name="username"
+          type="text"
+          placeholder="Username"
+          className="border border-none fs-5"
+        />
+        <input
+          name="email"
+          type="text"
+          placeholder="Email"
+          className="border border-none fs-5"
+        />
+        <input
+          name="password"
+          type="text"
+          placeholder="Password"
+          className="border border-none fs-5"
+        />
         <input
           name="confirmPassword"
           type="text"
           placeholder="Confirm password"
+          className="border border-none fs-5"
         />
 
-        <button type="submit">Register</button>
+        <button type="submit" className="my-3">
+          Register
+        </button>
       </form>
       {error && <div className="error">{error}</div>}
       <div>
         <span>Already registered?</span>
-        <button type="button" onClick={() => toggle()}>
+        <button className="auth-toggle" type="button" onClick={() => toggle()}>
           Login
         </button>
       </div>

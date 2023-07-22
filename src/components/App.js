@@ -1,8 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Motorcycles from './Motorcycles';
-import Register from './users/Register';
-import Login from './users/Login';
 import Layout from './layout/Layout';
 import Motorcycle from './motorcycles/Motorcycle';
 import MotorcycleForm from './motorcycleForm/MotorcycleForm';
@@ -14,14 +12,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="/" element={<Motorcycles />} />
+        <Route index element={<Motorcycles />} />
         <Route path="/motorcycles" element={<Motorcycles />} />
         <Route path="/motorcycles/new" element={<MotorcycleForm />} />
         <Route path="/motorcycles/delete" element={<MotorcycleDeleteForm />} />
         <Route path="/reservations" element={<Reservations />} />
         <Route path="/reservations/new" element={<ReserveForm />} />
-        <Route path="/register" element={<Register toggle={() => null} />} />
-        <Route path="/login" element={<Login toggle={() => null} handleClose={() => null} />} />
         <Route path="/motorcycles/:id" element={<Motorcycle />} />
         {/* Add your routes here! */}
         <Route path="*" element={<Navigate to="/motorcycles" />} />

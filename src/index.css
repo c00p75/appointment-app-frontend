@@ -13,6 +13,13 @@ body {
   right: 0;
 }
 
+.auth-toggle {
+  border: none;
+  background-color: transparent;
+  color: var(--main-bkg);
+  margin-left: -2em;
+}
+
 .reserve-form {
   height: calc(100vh - 20px);
 }
@@ -43,18 +50,6 @@ select ::after {
   color: red;
 }
 
-#motorcycle-show {
-  height: 100vh;
-}
-
-#motorcycle-show > * {
-  height: 100%;
-}
-
-#motorcycle-show img {
-  width: inherit;
-}
-
 .btn-action {
   height: 50px;
   border: transparent;
@@ -68,7 +63,7 @@ select ::after {
 
 .btn-nav-left {
   width: 80px;
-  position: absolute;
+  position: relative;
   left: 0;
   bottom: 50px;
   padding-right: 0;
@@ -80,6 +75,70 @@ select ::after {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+}
+
+#motorcycle-show {
+  display: flex;
+  height: 94vh;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+
+.left-detail,
+.rigth-detail {
+  width: 100%;
+}
+
+.left-detail img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.rigth-detail {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+}
+
+.rigth-detail tr td:first-child {
+  padding: 0.3em 1em;
+}
+
+.rigth-detail tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.rigth-detail .show-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (width >= 768px) {
+  #motorcycle-show {
+    flex-direction: row;
+  }
+
+  .left-detail {
+    flex: 1;
+    height: 90vh;
+  }
+
+  .rigth-detail {
+    width: 350px;
+    margin-top: 50px;
+    align-items: flex-end;
+    padding: 2em;
+  }
+
+  .rigth-detail .show-actions {
+    align-items: flex-end;
+  }
 }
 
 :root {

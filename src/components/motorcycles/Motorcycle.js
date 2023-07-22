@@ -52,13 +52,15 @@ function Motorcycle() {
 
   if (selectedMotorcycle) {
     return (
-      <div id="motorcycle-show" className="row">
-        <div className="col-8">
-          <img
-            src={`${BASE_URL}${selectedMotorcycle.photo.url}`}
-            alt={selectedMotorcycle.model}
-            className="moto-photo"
-          />
+      <div id="motorcycle-show">
+        <div className="left-detail">
+          <div className="d-flex align-items-center h-100 justify-content-center">
+            <img
+              src={`${BASE_URL}${selectedMotorcycle.photo.url}`}
+              alt={selectedMotorcycle.model}
+            />
+          </div>
+
           <button
             type="button"
             className="btn-action btn-nav-left"

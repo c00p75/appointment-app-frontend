@@ -7,7 +7,7 @@ function MotorcycleDetail({
   handleDelete,
 }) {
   return (
-    <div className="col-4">
+    <div className="rigth-detail">
       <div>
         <h3>{selectedMotorcycle.model}</h3>
         <p>{selectedMotorcycle.description}</p>
@@ -32,17 +32,19 @@ function MotorcycleDetail({
           </tr>
         </tbody>
       </table>
+
       <div className="d-flex align-items-center justify-content-end">
-        <span>Discover more models</span>
+        <span className="px-1 fw-bold">Discover more models</span>
         <i className="fa fa-chevron-right" />
       </div>
-      <div className="d-flex flex-column justify-content-end align-items-end">
+
+      <div className="show-actions mt-5">
         <button type="button" className="btn-action" onClick={handleDelete}>
           Delete
         </button>
         <button
           type="button"
-          className="btn-action"
+          className="btn-action mt-3"
           onClick={handleAddReservation}
         >
           Add Reservation
