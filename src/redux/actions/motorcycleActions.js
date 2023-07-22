@@ -74,3 +74,16 @@ export const createMotorcycle = createAsyncThunk(
     }
   },
 );
+
+export const getUserMotorcycles = createAsyncThunk(
+  'motorcycles/getUserMotorcycles',
+  async (_, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await axiosInstance.get(`${BASE_URL}motorcycles/user_motorcycles`);
+
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue({ ...error.response.data.error });
+    }
+  },
+);
