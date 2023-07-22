@@ -174,7 +174,7 @@ select ::after {
   border-radius: 50%;
   border: 7px solid transparent;
   border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%) rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
-  animation: loaders .5s infinite linear;
+  animation: loaders 0.5s infinite linear;
 }
 
 @keyframes loaders {
