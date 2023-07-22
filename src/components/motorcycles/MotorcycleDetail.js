@@ -7,40 +7,44 @@ function MotorcycleDetail({
   handleDelete,
 }) {
   return (
-    <div className="col-4">
+    <div className="rigth-detail">
       <div>
         <h3>{selectedMotorcycle.model}</h3>
         <p>{selectedMotorcycle.description}</p>
       </div>
       <table className="table table-striped table-hover">
-        <tr>
-          <td>Finance Fee</td>
-          <td>{selectedMotorcycle.finance_fee}</td>
-        </tr>
-        <tr>
-          <td>Option to purchase Fee</td>
-          <td>{selectedMotorcycle.purchase_fee}</td>
-        </tr>
-        <tr>
-          <td>Total amount payable</td>
-          <td>{selectedMotorcycle.amount_payable}</td>
-        </tr>
-        <tr>
-          <td>Duration</td>
-          <td>{selectedMotorcycle.duration}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td>Finance Fee</td>
+            <td>{selectedMotorcycle.finance_fee}</td>
+          </tr>
+          <tr>
+            <td>Option to purchase Fee</td>
+            <td>{selectedMotorcycle.purchase_fee}</td>
+          </tr>
+          <tr>
+            <td>Total amount payable</td>
+            <td>{selectedMotorcycle.amount_payable}</td>
+          </tr>
+          <tr>
+            <td>Duration</td>
+            <td>{selectedMotorcycle.duration}</td>
+          </tr>
+        </tbody>
       </table>
+
       <div className="d-flex align-items-center justify-content-end">
-        <span>Discover more models</span>
+        <span className="px-1 fw-bold">Discover more models</span>
         <i className="fa fa-chevron-right" />
       </div>
-      <div className="d-flex flex-column justify-content-end align-items-end">
+
+      <div className="show-actions mt-5">
         <button type="button" className="btn-action" onClick={handleDelete}>
           Delete
         </button>
         <button
           type="button"
-          className="btn-action"
+          className="btn-action mt-3"
           onClick={handleAddReservation}
         >
           Add Reservation
@@ -53,7 +57,9 @@ function MotorcycleDetail({
 MotorcycleDetail.propTypes = {
   selectedMotorcycle: PropTypes.shape({
     model: PropTypes.string,
-    duration: PropTypes.string.isRequired,
+    duration: PropTypes.oneOfType([
+      PropTypes.string, PropTypes.number,
+    ]).isRequired,
     description: PropTypes.string.isRequired,
     finance_fee: PropTypes.string.isRequired,
     amount_payable: PropTypes.string.isRequired,

@@ -44,7 +44,7 @@ function Motorcycle() {
 
   const handleAddReservation = () => {
     if (isLoggedIn()) {
-      navigate('/reserve');
+      navigate('/reservations/new');
     } else {
       dispatch(setPopup(popupHelper(POPUP_AUTH)));
     }
@@ -52,13 +52,15 @@ function Motorcycle() {
 
   if (selectedMotorcycle) {
     return (
-      <div id="motorcycle-show" className="row">
-        <div className="col-8">
-          <img
-            src={`${BASE_URL}${selectedMotorcycle.photo.url}`}
-            alt={selectedMotorcycle.model}
-            className="moto-photo"
-          />
+      <div id="motorcycle-show">
+        <div className="left-detail">
+          <div className="d-flex align-items-center h-100 justify-content-center">
+            <img
+              src={`${BASE_URL}${selectedMotorcycle.photo.url}`}
+              alt={selectedMotorcycle.model}
+            />
+          </div>
+
           <button
             type="button"
             className="btn-action btn-nav-left"
@@ -75,6 +77,7 @@ function Motorcycle() {
       </div>
     );
   }
+  return (<div className="m-5 p-5 w-100 d-flex align-items-center justify-content-center">MotoCycle not found</div>);
 }
 
 export default Motorcycle;
