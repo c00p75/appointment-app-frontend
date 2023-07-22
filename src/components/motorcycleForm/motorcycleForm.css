@@ -24,10 +24,10 @@
 }
 
 #delete-motorcycle .divide {
-    width: 70%;
-    background: gainsboro;
-    height: 1px;
-    margin: auto;
+  width: 70%;
+  background: gainsboro;
+  height: 1px;
+  margin: auto;
 }
 
 @media (width >= 768px) {
