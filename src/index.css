@@ -85,3 +85,41 @@ select ::after {
 :root {
   --main-bkg: #8ab30e;
 }
+
+.loader {
+  position: absolute;
+  margin: auto;
+  width: 4em;
+  height: 4em;
+  inset: 0;
+  top: 40vh;
+}
+
+.loader::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgb(243 255 246 / 50%);
+  backdrop-filter: blur(1px);
+  animation: none;
+}
+
+.loader::after {
+  content: "";
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%) rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
+  animation: loaders .5s infinite linear;
+}
+
+@keyframes loaders {
+  to {
+    transform: rotate(360deg);
+  }
+}

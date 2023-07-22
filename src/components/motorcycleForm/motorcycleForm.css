@@ -17,3 +17,21 @@
   font-weight: bolder;
   font-size: 2em;
 }
+
+#delete-motorcycle {
+  padding: 0 !important;
+  position: relative;
+}
+
+#delete-motorcycle .divide {
+    width: 70%;
+    background: gainsboro;
+    height: 1px;
+    margin: auto;
+}
+
+@media (width >= 768px) {
+  #delete-motorcycle img {
+    width: 25%;
+  }
+}

@@ -2,28 +2,17 @@
   position: fixed;
   width: 100vw;
   height: 4em;
-  z-index: 5;
+  z-index: 4;
   transition: all 0.3s ease-in-out;
 }
 
-.app-navigation-bar button {
+.toggle-side-bar {
   position: absolute;
   top: 0.5em;
+  left: 0;
   border: none;
-  z-index: 5;
-}
-
-.app-navigation-bar > button:first-child {
-  left: 1em;
   background: none;
-}
-
-.app-navigation-bar > button:last-child {
-  right: 1em;
-  margin-top: 0.5em;
-  background: white;
-  border-radius: 30px;
-  padding: 0.3em 0.5em;
+  z-index: 5;
 }
 
 .nav-scrolled {
@@ -107,7 +96,7 @@ main > section:last-child {
     margin: auto;
   }
 
-  .app-navigation-bar > button:last-child {
-    right: 2em;
+  .toggle-side-bar {
+    left: 1em;
   }
 }
