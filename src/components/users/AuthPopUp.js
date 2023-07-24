@@ -10,7 +10,7 @@ function AuthPopup({ handleClose }) {
 
   const handleToggle = () => setIsLogin(!isLogin);
 
-return (
+  return (
     <>
       {isLogin ? (
         <Login
