@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../redux/actions/userActions';
 
-function Login({ handleClose, toggle }) {
+function Login({ handleClose, toggle, setIsLoading }) {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
@@ -22,7 +22,9 @@ function Login({ handleClose, toggle }) {
     e.target.reset();
     setError('');
 
+    setIsLoading(true);
     dispatch(loginUser({ email, password })).then(({ error }) => {
+      setIsLoading(false);
       if (error) {
         setError('Rejected');
         return;
@@ -72,6 +74,7 @@ function Login({ handleClose, toggle }) {
 Login.propTypes = {
   toggle: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
 };
 
 export default Login;

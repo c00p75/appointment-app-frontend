@@ -119,6 +119,33 @@ select ::after {
   align-items: center;
 }
 
+/* RotatingProgressBar.css */
+
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.progress-bar {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #ccc;
+  border-top: 4px solid var(--main-bkg); /* Change the color as per your preference */
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (width >= 768px) {
   #motorcycle-show {
     flex-direction: row;
@@ -155,7 +182,7 @@ select ::after {
 }
 
 .loader::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -167,13 +194,14 @@ select ::after {
 }
 
 .loader::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 4em;
   height: 4em;
   border-radius: 50%;
   border: 7px solid transparent;
-  border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%) rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
+  border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%)
+    rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
   animation: loaders 0.5s infinite linear;
 }
 
