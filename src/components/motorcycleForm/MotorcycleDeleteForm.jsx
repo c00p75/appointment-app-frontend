@@ -1,33 +1,42 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMotorcycles, deleteMotorcycle } from '../../redux/actions/motorcycleActions';
+import { deleteMotorcycle, getUserMotorcycles } from '../../redux/actions/motorcycleActions';
+import { BASE_URL } from '../../constants';
+import './motorcycleForm.css';
 
 function MotorcycleDeleteForm() {
   const dispatch = useDispatch();
-  const [allMotorcycle, setAllMotorcycle] = useState([]);
-  const { motorcycles } = useSelector((state) => state.motorcycles);
+  const { loading, userMotorcycles } = useSelector((state) => state.motorcycles);
+  const [motorcycles, setMotorcycles] = useState([]);
 
   useEffect(() => {
-    dispatch(getMotorcycles());
-    setAllMotorcycle(motorcycles);
-  }, [dispatch, motorcycles]);
-  const [isLoading, setIsLoading] = useState(false);
+    dispatch(getUserMotorcycles());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setMotorcycles(userMotorcycles);
+  }, [userMotorcycles]);
 
   const handleDelete = async (motorcycle) => {
-    setIsLoading(true);
     await dispatch(deleteMotorcycle(motorcycle));
-    setIsLoading(false);
+    setMotorcycles(motorcycles.filter((i) => i.id !== motorcycle));
   };
 
   return (
-    <div className="container d-flex flex-column justify-content-center pt-5">
-      {allMotorcycle.map((motorcycle, index) => (
+    <div className="container d-flex flex-column justify-content-center pt-5 mt-4 mt-md-5" id="delete-motorcycle">
+      {loading && (<div className="loader" />)}
+      <h2 className="text-center">Delete Motorcycles</h2>
+      <div className="my-3 divide" />
+      {!motorcycles.length && (<div className="text-center mt-5">No motorcycles added</div>)}
+      {motorcycles.map((motorcycle, index) => (
         <div key={`motorcycle-${index + 1}`} className="container d-flex justify-content-around m-2 mx-md-5" style={{ width: 'auto' }}>
-          <span className="fw-bold">{motorcycle.model}</span>
-          <button className="btn btn-danger flex-center" disabled={isLoading} type="submit" onClick={() => handleDelete(motorcycle.id)} style={{ width: 'fit-content' }}>
-            Delete
-          </button>
+          <div className="row d-flex align-items-center justify-content-center p-3">
+            <img src={BASE_URL + motorcycle.photo.url} alt="pic" className="col-12 col-md-4" />
+            <div className="col-6 col-md-4 fw-bold text-center">{motorcycle.model}</div>
+            <button className="col-6 col-md-4 my-4 my-md-0 btn btn-danger flex-center" disabled={loading} type="submit" onClick={() => handleDelete(motorcycle.id)} style={{ width: 'fit-content' }}>
+              Delete
+            </button>
+          </div>
         </div>
       ))}
     </div>

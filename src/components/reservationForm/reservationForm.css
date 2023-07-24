@@ -13,13 +13,19 @@
 }
 
 #reservation-form .reservation-item {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
+  position: absolute;
+  width: 100%;
   margin: auto;
   opacity: 0.2;
   filter: contrast(0.5);
-  animation: slide-in 0.5s ease-in-out;
+}
+
+.slide-in {
+  animation: slide-in 0.5s ease-in;
+}
+
+.hide-image {
+  opacity: 0 !important;
 }
 
 @keyframes slide-in {

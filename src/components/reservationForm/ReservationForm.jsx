@@ -6,56 +6,59 @@ import dayjs from 'dayjs';
 import { LocalizationProvider, StaticDatePicker, MobileDatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useNavigate } from 'react-router-dom';
-import { getMotorcycles } from '../../redux/actions/motorcycleActions';
+import { getMotorcycle, getMotorcycles } from '../../redux/actions/motorcycleActions';
 import { BASE_URL } from '../../constants';
-import { createReservation } from '../../redux/actions/reservationActions';
+import { createReservation, getMyReservations } from '../../redux/actions/reservationActions';
 
-const cities = [
-  'Lagos',
-  'Abuja',
-  'Ibadan',
-  'Kano',
-  'Port Harcourt',
-  'Benin City',
-  'Kaduna',
-  'Enugu',
-  'Calabar',
-  'Owerri',
-];
+const cities = ['Lagos', 'Abuja', 'Ibadan', 'Kano', 'Port Harcourt', 'Benin City', 'Kaduna', 'Enugu', 'Calabar', 'Owerri'];
 
 function ReservationForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    dispatch(getMotorcycles());
-  }, [dispatch]);
-
-  const { motorcycles, selectedMotorcycle: bike } = useSelector((state) => state.motorcycles);
-  const selectedMotorcycle = JSON.stringify(bike || {});
-
+  const { motorcycles } = useSelector((state) => state.motorcycles);
+  const { reservations } = useSelector((store) => store.reservations);
+  const { selectedMotorcycle } = useSelector((store) => store.motorcycles);
   const [motorcycle, setMotorcycle] = useState('');
-  useEffect(() => {
-    const selectedBike = JSON.parse(selectedMotorcycle);
-    if (!selectedBike?.id) return;
-    setMotorcycle(selectedBike);
-  }, [selectedMotorcycle]);
-
+  const [motorcycleChange, setMotorcycleChange] = useState(false);
   const [selectedCity, setSelectedCity] = useState('');
   const [reservationDate, setReservationDate] = useState(dayjs());
   const [modalShow, setModalShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const disabledDates = [
-    new Date('2023-07-25'),
-    new Date('2023-07-26'),
-    new Date('2023-07-27'),
-  ];
+
+  useEffect(() => {
+    dispatch(getMotorcycles());
+    dispatch(getMyReservations());
+    return () => {
+      dispatch(getMotorcycle(''));
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (selectedMotorcycle) {
+      setMotorcycle(selectedMotorcycle);
+      setMotorcycleChange(true);
+    }
+  }, [selectedMotorcycle]);
+
+  const handleMotorcycleSelect = async (moto) => {
+    if (moto !== motorcycle) setMotorcycleChange(false);
+    setMotorcycle(moto);
+    setTimeout(() => { setMotorcycleChange(true); }, 1);
+  };
+
+  const disabledDates = () => {
+    if (reservations) {
+      return reservations.filter((res) => res.motorcycle_id === motorcycle.id)
+        .map((i) => new Date(i.date));
+    }
+    return [];
+  };
 
   const shouldDisableDate = (date) => (
-    disabledDates.some((disabledDate) => date.$d.toDateString() === disabledDate.toDateString())
+    disabledDates().some((disabledDate) => date.$d.toDateString() === disabledDate.toDateString())
   );
 
-  const handleSubmit = async (date) => {
-    setReservationDate(date);
+  const handleSubmit = async () => {
     setIsLoading(true);
     const formData = new FormData();
     formData.append('reservation[motorcycle_id]', motorcycle.id);
@@ -69,7 +72,7 @@ function ReservationForm() {
   return (
     <div id="reservation-form" className="flex-center">
       {!motorcycle.photo && (<img src="https://www.onlygfx.com/wp-content/uploads/2017/03/motorcycle-silhouette-5-1024x604.png" alt="pic" className="reservation-item" />)}
-      {motorcycle.photo && (<img src={BASE_URL + motorcycle.photo.url} alt="pic" className="reservation-item" />)}
+      {motorcycle.photo && (<img src={BASE_URL + motorcycle.photo.url} alt="pic" className={`reservation-item ${motorcycleChange ? 'slide-in' : 'hide-image'}`} />)}
       <div className="container position-absolute flex-center flex-column overflow-auto">
         <h1>{motorcycle.model ? `Book a ${motorcycle.model}` : 'Book a motorcycle'}</h1>
         <span className="divide" />
@@ -82,10 +85,10 @@ function ReservationForm() {
 
             <Dropdown.Menu>
               {!motorcycles.length && (
-                <Dropdown.Item disabled>No motorcycles available</Dropdown.Item>
+                <Dropdown.Item disabled className="text-center">No motorcycles available</Dropdown.Item>
               )}
               {motorcycles.map((motorcycle, index) => (
-                <Dropdown.Item key={`motorcycle-${index + 1}`}><button type="button" onClick={() => { setMotorcycle(motorcycle); }}>{motorcycle.model}</button></Dropdown.Item>
+                <Dropdown.Item key={`motorcycle-${index + 1}`}><button type="button" onClick={() => { handleMotorcycleSelect(motorcycle); }}>{motorcycle.model}</button></Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
@@ -113,16 +116,17 @@ function ReservationForm() {
                   label="Select date"
                   disablePast
                   value={reservationDate}
-                  onAccept={(date) => handleSubmit(date)}
+                  onChange={(date) => setReservationDate(date)}
+                  onAccept={() => handleSubmit()}
                   onClose={() => { if (!isLoading) setModalShow(false); }}
                   shouldDisableDate={shouldDisableDate}
                 />
                 <MobileDatePicker
                   className="d-md-none my-3"
                   label="Select date"
-                  disablePast
                   value={reservationDate}
-                  onAccept={(date) => handleSubmit(date)}
+                  onChange={(date) => setReservationDate(date)}
+                  onAccept={() => handleSubmit()}
                   onClose={() => { if (!isLoading) setModalShow(false); }}
                   shouldDisableDate={shouldDisableDate}
                 />

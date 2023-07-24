@@ -4,10 +4,12 @@ import {
   getMotorcycle,
   getMotorcycles,
   createMotorcycle,
+  getUserMotorcycles,
 } from '../actions/motorcycleActions';
 
 const initialState = {
   motorcycles: [],
+  userMotorcycles: [],
   loading: false,
   error: null,
 };
@@ -16,7 +18,7 @@ const selectedMotorcycleReducer = (state, { payload }) => ({
   ...state,
   selectedMotorcycle: state.motorcycles.find(
     (motorcycle) => motorcycle.id === payload,
-  ),
+  ) || '',
 });
 
 const motorcyclesSlice = createSlice({
@@ -86,6 +88,22 @@ const motorcyclesSlice = createSlice({
         loading: false,
         error: payload,
         motorcycles: null,
+      }))
+      .addCase(getUserMotorcycles.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(getUserMotorcycles.fulfilled, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: null,
+        userMotorcycles: payload,
+      }))
+      .addCase(getUserMotorcycles.rejected, (state, { payload }) => ({
+        ...state,
+        loading: false,
+        error: payload,
+        userMotorcycles: null,
       }));
   },
 });
