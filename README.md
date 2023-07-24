@@ -51,6 +51,7 @@ CycleCruise is an app to create an appointment to test drive a motorcyle.
 
 - Add appointment for a motorbike
 - Delete appointment for a motorbike
+- Create and Delete motorbikes
 
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
@@ -60,15 +61,15 @@ CycleCruise is an app to create an appointment to test drive a motorcyle.
 
 To get a local copy up and running, follow these steps.
 
-
 ### Prerequisites
 
 In order to run this project you need: any web-browser.
 
 ### Setup
 
-This API is consumed by its front-end counterpart [front-end](https://github.com/c00p75/appointment-app-backend)
+This API is consumed by its front-end counterpart [back-end](https://github.com/c00p75/appointment-app-backend)
 
+- Check the instructions to connect to the database in the [back-end](https://github.com/c00p75/appointment-app-backend) repo
 
 Clone this [repo](https://github.com/c00p75/appointment-app-frontend.git) to your desired folder.
 
