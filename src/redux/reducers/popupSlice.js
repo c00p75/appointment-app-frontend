@@ -4,6 +4,7 @@ const initialState = {
   context: null,
   message: null,
   showPopup: false,
+  navigateTo: null,
 };
 
 const setPopupReducer = (state, { payload }) => ({
@@ -11,6 +12,7 @@ const setPopupReducer = (state, { payload }) => ({
   showPopup: true,
   context: payload.context,
   message: payload.message,
+  navigateTo: payload.navigateTo,
 });
 
 const closePopupReducer = (state) => ({ ...state, ...initialState });

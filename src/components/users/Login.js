@@ -1,11 +1,14 @@
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../redux/actions/userActions';
 
 function Login({ handleClose, toggle, setIsLoading }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [error, setError] = useState('');
+  const { navigateTo } = useSelector((store) => store.popup);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +22,6 @@ function Login({ handleClose, toggle, setIsLoading }) {
       return;
     }
 
-    e.target.reset();
     setError('');
 
     setIsLoading(true);
@@ -28,6 +30,12 @@ function Login({ handleClose, toggle, setIsLoading }) {
       if (error) {
         setError('Rejected');
         return;
+      }
+
+      e.target.reset();
+
+      if (navigateTo) {
+        navigate(navigateTo);
       }
       handleClose();
     });

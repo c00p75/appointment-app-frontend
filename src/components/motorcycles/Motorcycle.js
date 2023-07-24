@@ -46,7 +46,7 @@ function Motorcycle() {
     if (isLoggedIn()) {
       navigate('/reservations/new');
     } else {
-      dispatch(setPopup(popupHelper(POPUP_AUTH)));
+      dispatch(setPopup(popupHelper(POPUP_AUTH, null, '/reservations/new')));
     }
   };
 
@@ -77,7 +77,11 @@ function Motorcycle() {
       </div>
     );
   }
-  return (<div className="m-5 p-5 w-100 d-flex align-items-center justify-content-center">MotoCycle not found</div>);
+  return (
+    <div className="m-5 p-5 w-100 d-flex align-items-center justify-content-center">
+      MotoCycle not found
+    </div>
+  );
 }
 
 export default Motorcycle;
