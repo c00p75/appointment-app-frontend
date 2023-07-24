@@ -199,8 +199,7 @@ select ::after {
   height: 4em;
   border-radius: 50%;
   border: 7px solid transparent;
-  border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%)
-    rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
+  border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%) rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
   animation: loaders 0.5s infinite linear;
 }
 
