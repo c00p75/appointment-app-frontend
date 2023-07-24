@@ -10,26 +10,24 @@ function AuthPopup({ handleClose }) {
 
   const handleToggle = () => setIsLogin(!isLogin);
 
-  if (isLogin) {
-    return (
-      <>
-        {isLogin ? (
-          <Login
-            handleClose={handleClose}
-            toggle={handleToggle}
-            setIsLoading={setIsLoading}
-          />
-        ) : (
-          <Register
-            handleClose={handleClose}
-            toggle={handleToggle}
-            setIsLoading={setIsLoading}
-          />
-        )}
-        {isLoading && <ProgressBar />}
-      </>
-    );
-  }
+return (
+    <>
+      {isLogin ? (
+        <Login
+          handleClose={handleClose}
+          toggle={handleToggle}
+          setIsLoading={setIsLoading}
+        />
+      ) : (
+        <Register
+          handleClose={handleClose}
+          toggle={handleToggle}
+          setIsLoading={setIsLoading}
+        />
+      )}
+      {isLoading && <ProgressBar />}
+    </>
+  );
 }
 
 AuthPopup.propTypes = {
