@@ -44,7 +44,7 @@ function Motorcycle() {
 
   const handleAddReservation = () => {
     if (isLoggedIn()) {
-      navigate('/reserve');
+      navigate('/reservations/new');
     } else {
       dispatch(setPopup(popupHelper(POPUP_AUTH)));
     }

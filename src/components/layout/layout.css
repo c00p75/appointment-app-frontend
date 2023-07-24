@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .app-navigation-bar {
   position: fixed;
   width: 100vw;
@@ -55,11 +57,13 @@ main > section:last-child {
 .app-navigation {
   height: 100%;
   position: relative;
+  text-align: center;
+  padding: 4em 0;
 }
 
 .app-navigation span {
   font-weight: bold;
-  width: 100%;
+  width: 95vw;
   margin: 0.25em 0;
   padding: 0.5em 2.5em;
   letter-spacing: 0.8px;
@@ -80,6 +84,21 @@ main > section:last-child {
   bottom: 0;
 }
 
+.logo {
+  position: absolute;
+  font-family: Pacifico, sans-serif;
+  cursor: auto;
+  font-size: 2em;
+  left: 32.5vw;
+  top: 0;
+  color: yellowgreen;
+}
+
+.nav-scrolled .logo {
+  left: 45%;
+  top: 0.25em;
+}
+
 @media (width >= 768px) {
   .side-bar-container {
     position: sticky;
@@ -98,5 +117,25 @@ main > section:last-child {
 
   .toggle-side-bar {
     left: 1em;
+  }
+
+  .toggle-open-side-bar {
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  .app-navigation {
+    text-align: left;
+  }
+
+  .app-navigation span {
+    width: 100%;
+  }
+
+  .logo {
+    font-size: 2em;
+    left: auto;
+    right: 130%;
+    top: 0;
   }
 }
