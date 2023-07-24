@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../redux/actions/userActions';
 
-function Register({ toggle }) {
+function Register({ toggle, setIsLoading }) {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
@@ -36,7 +36,9 @@ function Register({ toggle }) {
       password,
     };
 
+    setIsLoading(true);
     dispatch(registerUser(userData)).then(({ error }) => {
+      setIsLoading(false);
       if (error) {
         setError('Rejected');
         return;
@@ -103,6 +105,7 @@ function Register({ toggle }) {
 
 Register.propTypes = {
   toggle: PropTypes.func.isRequired,
+  setIsLoading: PropTypes.func.isRequired,
 };
 
 export default Register;

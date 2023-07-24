@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { registerUser, loginUser, LOGOUT_USER } from '../actions/userActions';
 
 const initialState = {
-  user: [],
+  user: null,
   loading: false,
   error: null,
   isLoggedIn: false,
@@ -39,10 +39,7 @@ const usersSlice = createSlice({
       }))
       .addCase(LOGOUT_USER, (state) => ({
         ...state,
-        user: [],
-        loading: false,
-        error: null,
-        isLoggedIn: false,
+        ...initialState,
       }));
   },
 });

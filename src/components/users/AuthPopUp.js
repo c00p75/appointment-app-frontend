@@ -2,14 +2,32 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Login from './Login';
 import Register from './Register';
+import ProgressBar from '../common/ProgressBar';
 
 function AuthPopup({ handleClose }) {
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggle = () => setIsLogin(!isLogin);
 
-  if (isLogin) return <Login handleClose={handleClose} toggle={handleToggle} />;
-  return <Register handleClose={handleClose} toggle={handleToggle} />;
+  return (
+    <>
+      {isLogin ? (
+        <Login
+          handleClose={handleClose}
+          toggle={handleToggle}
+          setIsLoading={setIsLoading}
+        />
+      ) : (
+        <Register
+          handleClose={handleClose}
+          toggle={handleToggle}
+          setIsLoading={setIsLoading}
+        />
+      )}
+      {isLoading && <ProgressBar />}
+    </>
+  );
 }
 
 AuthPopup.propTypes = {

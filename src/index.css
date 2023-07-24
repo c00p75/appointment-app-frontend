@@ -119,6 +119,32 @@ select ::after {
   align-items: center;
 }
 
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.progress-bar {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #ccc;
+  border-top: 4px solid var(--main-bkg);
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (width >= 768px) {
   #motorcycle-show {
     flex-direction: row;
@@ -155,7 +181,7 @@ select ::after {
 }
 
 .loader::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   width: 100vw;
@@ -167,7 +193,7 @@ select ::after {
 }
 
 .loader::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 4em;
   height: 4em;
