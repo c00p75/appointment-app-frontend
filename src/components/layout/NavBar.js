@@ -15,9 +15,11 @@ function NavBar({ showNav, setShowNav }) {
     <div className={`app-navigation-bar ${scrolled && !showNav ? 'nav-scrolled' : ''}`}>
       <button type="button" onClick={() => setShowNav(!showNav)} className="toggle-side-bar">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
-          {!showNav && (<path fill="white" stroke="gray" d="M19 17H5c-1.103 0-2 .897-2 2s.897 2 2 2h14c1.103 0 2-.897 2-2s-.897-2-2-2zm0-7H5c-1.103 0-2 .897-2 2s.897 2 2 2h14c1.103 0 2-.897 2-2s-.897-2-2-2z" />)}
+          <path fill="white" stroke="gray" d="M19 17H5c-1.103 0-2 .897-2 2s.897 2 2 2h14c1.103 0 2-.897 2-2s-.897-2-2-2zm0-7H5c-1.103 0-2 .897-2 2s.897 2 2 2h14c1.103 0 2-.897 2-2s-.897-2-2-2z" />
         </svg>
       </button>
+
+      {scrolled && (<h1 className="logo">CycleCruise</h1>)}
     </div>
   );
 }
