@@ -67,7 +67,7 @@ In order to run this project you need: any web-browser.
 
 ### Setup
 
-This API is consumed by its front-end counterpart [back-end](https://github.com/c00p75/appointment-app-backend)
+This API is consumed by its back-end counterpart [back-end](https://github.com/c00p75/appointment-app-backend)
 
 - Check the instructions to connect to the database in the [back-end](https://github.com/c00p75/appointment-app-backend) repo
 
