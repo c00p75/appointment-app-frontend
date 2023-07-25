@@ -9,7 +9,7 @@
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
-  - [Run tests](#run-tests)
+<!--  - [Run tests](#run-tests) -->
   - [Deployment](#deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
@@ -94,14 +94,14 @@ Run from a terminal
     npm start
 ```
 
-### Run tests
+<!-- ### Run tests
 
 To run tests
 
 ```
   npm test
 ```
-
+-->
 ### Deployment
 
 You can deploy this project using: [render](https://render.com/).
