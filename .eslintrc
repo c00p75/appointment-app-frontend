@@ -23,8 +23,8 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "react/function-component-definition": "off"
   },
-  "ignorePatterns": ["dist/", "build/"],
-  
+  "ignorePatterns": ["dist/", "build/"]
 }

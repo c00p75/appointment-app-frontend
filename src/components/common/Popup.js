@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import AuthPopup from '../users/AuthPopUp';
 import { POPUP_AUTH } from '../../constants';
 
-function Popup({ handleClose }) {
+const Popup = ({ handleClose }) => {
   const { context, message } = useSelector((store) => store.popup);
 
   return (
@@ -44,7 +44,7 @@ function Popup({ handleClose }) {
       </div>
     </div>
   );
-}
+};
 
 Popup.propTypes = {
   handleClose: PropTypes.func.isRequired,

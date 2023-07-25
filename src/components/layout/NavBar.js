@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
 
-function NavBar({ showNav, setShowNav }) {
+const NavBar = ({ showNav, setShowNav }) => {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const onScroll = () => {
@@ -43,7 +43,7 @@ function NavBar({ showNav, setShowNav }) {
       {scrolled && <h1 className="logo">CycleCruise</h1>}
     </div>
   );
-}
+};
 
 NavBar.propTypes = {
   showNav: PropTypes.bool.isRequired,

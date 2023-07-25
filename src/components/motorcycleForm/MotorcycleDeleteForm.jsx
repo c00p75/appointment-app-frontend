@@ -7,7 +7,7 @@ import {
 import { BASE_URL } from '../../constants';
 import './motorcycleForm.css';
 
-function MotorcycleDeleteForm() {
+const MotorcycleDeleteForm = () => {
   const dispatch = useDispatch();
   const { loading, userMotorcycles } = useSelector(
     (state) => state.motorcycles,
@@ -67,6 +67,6 @@ function MotorcycleDeleteForm() {
       ))}
     </div>
   );
-}
+};
 
 export default MotorcycleDeleteForm;

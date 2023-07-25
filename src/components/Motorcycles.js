@@ -12,7 +12,7 @@ import facebook from '../assets/images/facebook.png';
 import twitter from '../assets/images/twitter.png';
 import instagram from '../assets/images/instagram.png';
 
-function Motorcycles() {
+const Motorcycles = () => {
   const { motorcycles } = useSelector((state) => state.motorcycles);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -122,6 +122,6 @@ function Motorcycles() {
       )}
     </div>
   );
-}
+};
 
 export default Motorcycles;

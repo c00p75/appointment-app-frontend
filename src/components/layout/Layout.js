@@ -4,7 +4,7 @@ import SideBar from './SideBar';
 import './layout.css';
 import NavBar from './NavBar';
 
-function Layout() {
+const Layout = () => {
   const [showNav, setShowNav] = useState(false);
   useEffect(() => {
     if (window.innerWidth >= 768) {
@@ -31,6 +31,6 @@ function Layout() {
       </section>
     </main>
   );
-}
+};
 
 export default Layout;

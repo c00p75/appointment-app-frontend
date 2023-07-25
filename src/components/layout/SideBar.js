@@ -9,7 +9,7 @@ import { popupHelper } from '../../helpers';
 import { POPUP_AUTH } from '../../constants';
 import Popup from '../common/Popup';
 
-function SideBar({ showNav, setShowNav }) {
+const SideBar = ({ showNav, setShowNav }) => {
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState(isLoggedIn());
   const navigate = useNavigate();
@@ -183,7 +183,7 @@ function SideBar({ showNav, setShowNav }) {
       </div>
     </>
   );
-}
+};
 
 SideBar.propTypes = {
   showNav: PropTypes.bool.isRequired,

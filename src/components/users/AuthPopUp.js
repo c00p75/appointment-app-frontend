@@ -4,7 +4,7 @@ import Login from './Login';
 import Register from './Register';
 import ProgressBar from '../common/ProgressBar';
 
-function AuthPopup({ handleClose }) {
+const AuthPopup = ({ handleClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -28,7 +28,7 @@ function AuthPopup({ handleClose }) {
       {isLoading && <ProgressBar />}
     </>
   );
-}
+};
 
 AuthPopup.propTypes = {
   handleClose: PropTypes.func.isRequired,

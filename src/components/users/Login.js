@@ -4,7 +4,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { loginUser } from '../../redux/actions/userActions';
 
-function Login({ handleClose, toggle, setIsLoading }) {
+const Login = ({ handleClose, toggle, setIsLoading }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState('');
@@ -77,7 +77,7 @@ function Login({ handleClose, toggle, setIsLoading }) {
       </div>
     </section>
   );
-}
+};
 
 Login.propTypes = {
   toggle: PropTypes.func.isRequired,
