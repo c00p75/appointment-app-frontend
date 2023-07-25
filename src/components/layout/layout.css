@@ -31,7 +31,6 @@
   background: white;
   box-shadow: 3px 0 5px -5px white;
   transition: all 0.5s ease-in-out;
-  opacity: 0;
   padding-top: 6em;
   padding-bottom: 2em;
   overflow: auto;
@@ -43,7 +42,6 @@
 
 .display-sidebar {
   box-shadow: 3px 0 5px -5px gray;
-  opacity: 1;
 }
 
 .hide-sidebar {
@@ -128,8 +126,14 @@ main > section:last-child {
     text-align: left;
   }
 
-  .app-navigation span {
+  .app-navigation > span {
+    opacity: 0;
     width: 100%;
+    transition: all 1s ease-in-out;
+  }
+  
+  .display-sidebar .app-navigation > span {
+    opacity: 1 !important;
   }
 
   .logo {
