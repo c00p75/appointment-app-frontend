@@ -55,13 +55,13 @@ function Login({ handleClose, toggle, setIsLoading }) {
           name="email"
           type="text"
           placeholder="Email"
-          className="border border-none fs-5"
+          className="border border-none fs-5 w-100"
         />
         <input
           name="password"
           type="text"
           placeholder="Password"
-          className="border border-none fs-5"
+          className="border border-none fs-5 w-100"
         />
 
         <button type="submit" className="my-3">
