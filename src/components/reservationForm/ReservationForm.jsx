@@ -207,6 +207,6 @@ const ReservationForm = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ReservationForm;
