@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { createMotorcycle } from '../../redux/actions/motorcycleActions';
 import { isLoggedIn } from '../../services/users.services';
 
-function MotorcycleForm() {
+const MotorcycleForm = () => {
   const [model, setModel] = useState(null);
   const [description, setDescription] = useState(null);
   const [photo, setPhoto] = useState(null);
@@ -191,6 +191,6 @@ function MotorcycleForm() {
       </div>
     </div>
   );
-}
+};
 
 export default MotorcycleForm;

@@ -33,7 +33,7 @@ const cities = [
   'Owerri',
 ];
 
-function ReservationForm() {
+const ReservationForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { motorcycles } = useSelector((state) => state.motorcycles);
@@ -89,30 +89,16 @@ function ReservationForm() {
     formData.append('reservation[city]', selectedCity);
     formData.append('reservation[date]', reservationDate.format('YYYY-MM-DD'));
     const isSuccess = await dispatch(createReservation(formData));
+
+    if (isSuccess.meta.requestStatus === 'fulfilled') { navigate('/reservations'); }
     setIsLoading(false);
-    if (isSuccess.meta.requestStatus === 'fulfilled') {
-      navigate('/reservations');
-    }
   };
 
   return (
     <div id="reservation-form" className="flex-center">
-      {!motorcycle.photo && (
-        <img
-          src="https://www.onlygfx.com/wp-content/uploads/2017/03/motorcycle-silhouette-5-1024x604.png"
-          alt="pic"
-          className="reservation-item"
-        />
-      )}
-      {motorcycle.photo && (
-        <img
-          src={BASE_URL + motorcycle.photo.url}
-          alt="pic"
-          className={`reservation-item ${
-            motorcycleChange ? 'slide-in' : 'hide-image'
-          }`}
-        />
-      )}
+      {isLoading && (<div className="loader" />)}
+      {!motorcycle.photo && (<img src="https://www.onlygfx.com/wp-content/uploads/2017/03/motorcycle-silhouette-5-1024x604.png" alt="pic" className="reservation-item" />)}
+      {motorcycle.photo && (<img src={BASE_URL + motorcycle.photo.url} alt="pic" className={`reservation-item ${motorcycleChange ? 'slide-in' : 'hide-image'}`} />)}
       <div className="container position-absolute flex-center flex-column overflow-auto">
         <h1>
           {motorcycle.model
@@ -221,6 +207,6 @@ function ReservationForm() {
       </div>
     </div>
   );
-}
+};
 
 export default ReservationForm;

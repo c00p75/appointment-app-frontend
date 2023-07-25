@@ -178,6 +178,7 @@ select ::after {
   height: 4em;
   inset: 0;
   top: 40vh;
+  z-index: 3;
 }
 
 .loader::before {
@@ -190,6 +191,7 @@ select ::after {
   background: rgb(243 255 246 / 50%);
   backdrop-filter: blur(1px);
   animation: none;
+  z-index: 3;
 }
 
 .loader::after {
@@ -201,10 +203,15 @@ select ::after {
   border: 7px solid transparent;
   border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%) rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
   animation: loaders 0.5s infinite linear;
+  z-index: 3;
 }
 
 @keyframes loaders {
   to {
     transform: rotate(360deg);
   }
+}
+
+.login-popup {
+  min-width: 300px;
 }

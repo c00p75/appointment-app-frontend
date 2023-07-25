@@ -11,7 +11,7 @@ import MotorcycleDetail from './MotorcycleDetail';
 import { setPopup } from '../../redux/reducers/popupSlice';
 import { popupHelper } from '../../helpers';
 
-function Motorcycle() {
+const Motorcycle = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -82,6 +82,6 @@ function Motorcycle() {
       MotoCycle not found
     </div>
   );
-}
+};
 
 export default Motorcycle;

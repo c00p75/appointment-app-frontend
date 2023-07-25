@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { registerUser } from '../../redux/actions/userActions';
 
-function Register({ toggle, setIsLoading }) {
+const Register = ({ toggle, setIsLoading }) => {
   const dispatch = useDispatch();
   const [error, setError] = useState('');
 
@@ -101,7 +101,7 @@ function Register({ toggle, setIsLoading }) {
       </div>
     </section>
   );
-}
+};
 
 Register.propTypes = {
   toggle: PropTypes.func.isRequired,

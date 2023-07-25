@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyReservations } from '../../redux/actions/reservationActions';
 
-function Reservations() {
+const Reservations = () => {
   const dispatch = useDispatch();
   const { reservations } = useSelector((store) => store.reservations);
   useEffect(() => {
@@ -43,6 +43,6 @@ function Reservations() {
       )}
     </div>
   );
-}
+};
 
 export default Reservations;
