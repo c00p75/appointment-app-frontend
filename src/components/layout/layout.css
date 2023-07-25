@@ -131,7 +131,7 @@ main > section:last-child {
     width: 100%;
     transition: all 1s ease-in-out;
   }
-  
+
   .display-sidebar .app-navigation > span {
     opacity: 1 !important;
   }
