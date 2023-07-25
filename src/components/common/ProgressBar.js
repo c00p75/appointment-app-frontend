@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function ProgressBar() {
+function ProgressBar() {
   return (
     <div className="progress-bar-container">
       <div className="progress-bar" />
     </div>
   );
 }
+
+export default ProgressBar;

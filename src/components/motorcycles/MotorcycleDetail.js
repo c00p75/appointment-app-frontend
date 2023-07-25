@@ -57,9 +57,8 @@ function MotorcycleDetail({
 MotorcycleDetail.propTypes = {
   selectedMotorcycle: PropTypes.shape({
     model: PropTypes.string,
-    duration: PropTypes.oneOfType([
-      PropTypes.string, PropTypes.number,
-    ]).isRequired,
+    duration: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      .isRequired,
     description: PropTypes.string.isRequired,
     finance_fee: PropTypes.string.isRequired,
     amount_payable: PropTypes.string.isRequired,
