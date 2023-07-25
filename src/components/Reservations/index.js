@@ -2,17 +2,20 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyReservations } from '../../redux/actions/reservationActions';
 
-export default function Reservations() {
+function Reservations() {
   const dispatch = useDispatch();
   const { reservations } = useSelector((store) => store.reservations);
   useEffect(() => {
     dispatch(getMyReservations());
   }, [dispatch]);
+
   return (
     <div className="px-3 py-5">
       <h4>My Reservations</h4>
       {reservations.length === 0 && (
-        <div className="py-5 text-center w-100">Your reservations for motorcycles shall appear here</div>
+        <div className="py-5 text-center w-100">
+          Your reservations for motorcycles shall appear here
+        </div>
       )}
       {reservations.length > 0 && (
         <table className="table">
@@ -41,3 +44,5 @@ export default function Reservations() {
     </div>
   );
 }
+
+export default Reservations;

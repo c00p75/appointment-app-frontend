@@ -29,14 +29,16 @@ function Motorcycles() {
   };
 
   useEffect(() => {
-    function getCenterSlidePercentage() {
+    const getCenterSlidePercentage = () => {
       const numMotorcycles = motorcycles.length;
-      return window.innerWidth >= 992 ? Math.max(100 / numMotorcycles, 33) : 100;
-    }
+      return window.innerWidth >= 992
+        ? Math.max(100 / numMotorcycles, 33)
+        : 100;
+    };
 
-    function handleResize() {
+    const handleResize = () => {
       setCenterSlidePercentage(getCenterSlidePercentage());
-    }
+    };
 
     window.addEventListener('resize', handleResize);
 
@@ -82,18 +84,35 @@ function Motorcycles() {
                   className="moto-photo"
                 />
               </div>
-              <div className="d-flex flex-column justify-content-end align-items-center my-0" style={{ height: '15rem' }}>
+              <div
+                className="d-flex flex-column justify-content-end align-items-center my-0"
+                style={{ height: '15rem' }}
+              >
                 <h3 className="fs-1">{motorcycle.model}</h3>
-                <p className="fs-6 text-secondary" style={{ height: '4rem' }}>{motorcycle.description}</p>
+                <p className="fs-6 text-secondary" style={{ height: '4rem' }}>
+                  {motorcycle.description}
+                </p>
                 <div className="d-flex flex-row gap-4">
                   <a href="https://www.facebook.com">
-                    <img src={facebook} alt={motorcycle.model} className="social" />
+                    <img
+                      src={facebook}
+                      alt={motorcycle.model}
+                      className="social"
+                    />
                   </a>
                   <a href="https://www.twitter.com">
-                    <img src={twitter} alt={motorcycle.model} className="social" />
+                    <img
+                      src={twitter}
+                      alt={motorcycle.model}
+                      className="social"
+                    />
                   </a>
                   <a href="https://www.instagram.com">
-                    <img src={instagram} alt={motorcycle.model} className="social" />
+                    <img
+                      src={instagram}
+                      alt={motorcycle.model}
+                      className="social"
+                    />
                   </a>
                 </div>
               </div>
