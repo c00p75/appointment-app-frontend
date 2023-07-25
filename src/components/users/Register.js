@@ -61,31 +61,31 @@ function Register({ toggle, setIsLoading }) {
           name="name"
           type="text"
           placeholder="Name"
-          className="border border-none fs-5"
+          className="border border-none fs-5 w-100"
         />
         <input
           name="username"
           type="text"
           placeholder="Username"
-          className="border border-none fs-5"
+          className="border border-none fs-5 w-100"
         />
         <input
           name="email"
           type="text"
           placeholder="Email"
-          className="border border-none fs-5"
+          className="border border-none fs-5 w-100"
         />
         <input
           name="password"
           type="text"
           placeholder="Password"
-          className="border border-none fs-5"
+          className="border border-none fs-5 w-100"
         />
         <input
           name="confirmPassword"
           type="text"
           placeholder="Confirm password"
-          className="border border-none fs-5"
+          className="border border-none fs-5 w-100"
         />
 
         <button type="submit" className="my-3">
