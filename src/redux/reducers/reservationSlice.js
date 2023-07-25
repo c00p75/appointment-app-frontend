@@ -32,7 +32,7 @@ const myReservationsSlice = createSlice({
         ...state,
         loading: false,
         error: null,
-        reservations: payload,
+        reservations: [...state.reservations, payload],
       }))
       .addCase(createReservation.pending, (state) => ({
         ...state,
