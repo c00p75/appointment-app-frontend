@@ -59,7 +59,7 @@ const Login = ({ handleClose, toggle, setIsLoading }) => {
         />
         <input
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
           className="border border-none fs-5"
         />
