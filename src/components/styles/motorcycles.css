@@ -1,0 +1,62 @@
+.main-container {
+  height: 70vh;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80vh;
+  padding: 1rem;
+}
+
+.carousel .control-arrow {
+  opacity: 1;
+  pointer-events: auto;
+  transition: none;
+}
+
+.carousel.carousel-slider .control-arrow {
+  height: 3rem;
+  width: 5rem;
+  background: rgb(47 206 7);
+  margin-top: 30vh;
+}
+
+.control-next {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+}
+
+.control-prev {
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.moto-photo {
+  margin-top: 3rem;
+  max-width: 50vw;
+  max-height: 50vh;
+  width: auto;
+  height: auto;
+}
+
+.social {
+  height: 3rem;
+}
+
+@media (width >= 800px) {
+  .slide {
+    max-height: 80vh;
+    width: min-content;
+  }
+
+  .moto-photo {
+    margin-top: 6rem;
+    max-width: 40vw;
+    max-height: 40vh;
+    width: auto;
+    height: auto;
+  }
+}

@@ -1,0 +1,141 @@
+#reservation-form {
+  background-color: #8ab30e;
+  color: white;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+#reservation-form > .container {
+  position: absolute;
+  inset: 0;
+}
+
+#reservation-form .reservation-item {
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  opacity: 0.2;
+  filter: contrast(0.5);
+}
+
+.slide-in {
+  animation: slide-in 0.5s ease-in;
+}
+
+.hide-image {
+  opacity: 0 !important;
+}
+
+@keyframes slide-in {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+#reservation-form h1 {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 2em;
+}
+
+#reservation-form .divide {
+  width: 60%;
+  height: 2px;
+  background-color: white;
+  margin: 1.5em 0;
+  opacity: 0.4;
+}
+
+#reservation-form p {
+  line-height: 1.8em;
+  max-width: 850px;
+}
+
+#reservation-form .form-btn {
+  width: 12em;
+  margin: 1em;
+  border: none !important;
+  border-radius: 30px !important;
+  padding: 0.7em 1em !important;
+  box-shadow: 0 0 1px 2px white;
+  font-weight: bold !important;
+}
+
+#reservation-form .dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#reservation-form .dropdown-basic {
+  background: none !important;
+  color: white !important;
+}
+
+#reservation-form #book {
+  background: white;
+  color: #8ab30e;
+}
+
+#reservation-form #book:hover {
+  filter: drop-shadow(2px 4px 6px black);
+}
+
+#reservation-form .dropdown-menu {
+  max-height: 50vh;
+  min-width: 12em;
+  overflow: auto;
+}
+
+#reservation-form .dropdown-menu button {
+  background: none;
+  border: 0;
+  margin: 0 !important;
+  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x) !important;
+  width: 100%;
+  height: 100%;
+  box-shadow: none !important;
+  font-weight: normal !important;
+}
+
+#reservation-form .dropdown-item {
+  padding: 0;
+}
+
+#reservation-form .modal-content {
+  width: fit-content !important;
+  padding: 0 3em;
+}
+
+#reservation-form .modal-body {
+  padding: 0;
+}
+
+#reservation-form .modal-dialog {
+  display: flex;
+  justify-content: center;
+}
+
+#reservation-form .modal-body > div {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#reservation-form .modal-body > div > div:first-child {
+  display: flex !important;
+  align-items: center;
+}
+
+#reservation-form .modal-body > div > div:nth-child(2) > div > div:first-child button {
+  width: 1em;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#reservation-form .loader {
+  height: auto !important;
+}

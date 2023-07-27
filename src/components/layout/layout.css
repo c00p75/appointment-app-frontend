@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.app-navigation-bar {
+  position: fixed;
+  width: 100vw;
+  height: 4em;
+  z-index: 4;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-side-bar {
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  border: none;
+  background: none;
+  z-index: 5;
+}
+
+.nav-scrolled {
+  background-color: white;
+  box-shadow: 0 4px 4px -4px #00000080;
+}
+
+.side-bar-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 4;
+  background: white;
+  box-shadow: 3px 0 5px -5px white;
+  transition: all 0.5s ease-in-out;
+  padding-top: 6em;
+  padding-bottom: 2em;
+  overflow: auto;
+}
+
+.side-bar {
+  margin-top: 5em;
+}
+
+.display-sidebar {
+  box-shadow: 3px 0 5px -5px gray;
+}
+
+.hide-sidebar {
+  width: 0;
+}
+
+main > section:last-child {
+  width: 100%;
+}
+
+.app-navigation {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  padding: 4em 0;
+}
+
+.app-navigation span {
+  font-weight: bold;
+  width: 95vw;
+  margin: 0.25em 0;
+  padding: 0.5em 2.5em;
+  letter-spacing: 0.8px;
+}
+
+.app-navigation span:hover {
+  background: rgb(173 255 47 / 30%);
+}
+
+.app-navigation span.active {
+  color: white;
+  background: yellowgreen;
+}
+
+.login-btn {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+
+.logo {
+  position: absolute;
+  font-family: Pacifico, sans-serif;
+  cursor: auto;
+  font-size: 2em;
+  left: 32.5vw;
+  top: 0;
+  color: yellowgreen;
+}
+
+.nav-scrolled .logo {
+  left: 45%;
+  top: 0.25em;
+}
+
+@media (width >= 768px) {
+  .side-bar-container {
+    position: sticky;
+    height: 100vh;
+    padding: 3em 0;
+  }
+
+  .display-sidebar {
+    width: 20em;
+  }
+
+  .login-btn {
+    position: absolute;
+    margin: auto;
+  }
+
+  .toggle-side-bar {
+    left: 1em;
+  }
+
+  .toggle-open-side-bar {
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  .app-navigation {
+    text-align: left;
+  }
+
+  .app-navigation > span {
+    opacity: 0;
+    width: 100%;
+    transition: all 1s ease-in-out;
+  }
+
+  .display-sidebar .app-navigation > span {
+    opacity: 1 !important;
+  }
+
+  .logo {
+    font-size: 2em;
+    left: auto;
+    right: 130%;
+    top: 0;
+  }
+}

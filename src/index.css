@@ -1,0 +1,217 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto, 'Courier New', Courier, monospace;
+}
+
+body {
+  margin: 0;
+}
+
+.nav-bar {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.auth-toggle {
+  border: none;
+  background-color: transparent;
+  color: var(--main-bkg);
+  margin-left: -2em;
+}
+
+.reserve-form {
+  height: calc(100vh - 20px);
+}
+
+.vespa-form {
+  max-width: 960px;
+}
+
+.vespa-form .form-select {
+  max-width: 220px;
+}
+
+.vespa-form button,
+.vespa-form select {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  border-radius: 25px;
+}
+
+.vespa-form hr {
+  border-width: 2px;
+  opacity: 1;
+}
+
+select ::before,
+select ::after {
+  background: red;
+  color: red;
+}
+
+.btn-action {
+  height: 50px;
+  border: transparent;
+  color: white;
+  background-color: var(--main-bkg);
+  border-radius: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: fit-content;
+}
+
+.btn-nav-left {
+  width: 80px;
+  position: relative;
+  left: 0;
+  bottom: 50px;
+  padding-right: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.flex-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#motorcycle-show {
+  display: flex;
+  height: 94vh;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+
+.left-detail,
+.rigth-detail {
+  width: 100%;
+}
+
+.left-detail img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.rigth-detail {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+}
+
+.rigth-detail tr td:first-child {
+  padding: 0.3em 1em;
+}
+
+.rigth-detail tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+.rigth-detail .show-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.progress-bar {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #ccc;
+  border-top: 4px solid var(--main-bkg);
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (width >= 768px) {
+  #motorcycle-show {
+    flex-direction: row;
+  }
+
+  .left-detail {
+    flex: 1;
+    height: 90vh;
+  }
+
+  .rigth-detail {
+    width: 350px;
+    margin-top: 50px;
+    align-items: flex-end;
+    padding: 2em;
+  }
+
+  .rigth-detail .show-actions {
+    align-items: flex-end;
+  }
+}
+
+:root {
+  --main-bkg: #8ab30e;
+}
+
+.loader {
+  position: absolute;
+  margin: auto;
+  width: 4em;
+  height: 4em;
+  inset: 0;
+  top: 40vh;
+  z-index: 3;
+}
+
+.loader::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgb(243 255 246 / 50%);
+  backdrop-filter: blur(1px);
+  animation: none;
+  z-index: 3;
+}
+
+.loader::after {
+  content: '';
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-color: rgb(138 179 14 / 60%) rgb(138 179 14 / 65%) rgb(138 179 14 / 75%) rgb(138 179 14 / 80%);
+  animation: loaders 0.5s infinite linear;
+  z-index: 3;
+}
+
+@keyframes loaders {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-popup {
+  min-width: 300px;
+}
