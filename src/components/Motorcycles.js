@@ -6,7 +6,6 @@ import { getMotorcycles } from '../redux/actions/motorcycleActions';
 import { selectMotorcycle } from '../redux/reducers/motorcyclesSlice';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-import { BASE_URL } from '../constants';
 import './styles/motorcycles.css';
 import facebook from '../assets/images/facebook.png';
 import twitter from '../assets/images/twitter.png';
@@ -79,7 +78,7 @@ const Motorcycles = () => {
             >
               <div>
                 <img
-                  src={`${BASE_URL}${motorcycle.photo.url}`}
+                  src={motorcycle.photo.url}
                   alt={motorcycle.model}
                   className="moto-photo"
                 />

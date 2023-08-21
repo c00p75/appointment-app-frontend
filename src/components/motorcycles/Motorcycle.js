@@ -6,7 +6,7 @@ import {
   getMotorcycle,
 } from '../../redux/actions/motorcycleActions';
 import { isLoggedIn } from '../../services/users.services';
-import { BASE_URL, POPUP_ALERT, POPUP_AUTH } from '../../constants';
+import { POPUP_ALERT, POPUP_AUTH } from '../../constants';
 import MotorcycleDetail from './MotorcycleDetail';
 import { setPopup } from '../../redux/reducers/popupSlice';
 import { popupHelper } from '../../helpers';
@@ -56,7 +56,7 @@ const Motorcycle = () => {
         <div className="left-detail">
           <div className="d-flex align-items-center h-100 justify-content-center">
             <img
-              src={`${BASE_URL}${selectedMotorcycle.photo.url}`}
+              src={selectedMotorcycle.photo.url}
               alt={selectedMotorcycle.model}
             />
           </div>

@@ -4,7 +4,6 @@ import {
   deleteMotorcycle,
   getUserMotorcycles,
 } from '../../redux/actions/motorcycleActions';
-import { BASE_URL } from '../../constants';
 import './motorcycleForm.css';
 
 const MotorcycleDeleteForm = () => {
@@ -46,7 +45,7 @@ const MotorcycleDeleteForm = () => {
         >
           <div className="row d-flex align-items-center justify-content-center p-3">
             <img
-              src={BASE_URL + motorcycle.photo.url}
+              src={motorcycle.photo.url}
               alt="pic"
               className="col-12 col-md-4"
             />
