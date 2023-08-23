@@ -18,7 +18,6 @@ const App = () => (
       <Route path="/reservations" element={<Reservations />} />
       <Route path="/reservations/new" element={<ReserveForm />} />
       <Route path="/motorcycles/:id" element={<Motorcycle />} />
-      {/* Add your routes here! */}
       <Route path="*" element={<Navigate to="/motorcycles" />} />
     </Route>
   </Routes>

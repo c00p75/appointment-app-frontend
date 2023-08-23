@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 * {
   box-sizing: border-box;
   font-family: Roboto, 'Courier New', Courier, monospace;
@@ -214,4 +216,6 @@ select ::after {
 
 .login-popup {
   min-width: 300px;
+  width: 80vw;
+  height: 90vh;
 }

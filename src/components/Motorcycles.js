@@ -53,6 +53,10 @@ const Motorcycles = () => {
     <div className="d-flex flex-column main-container pt-5">
       <h1 className="text-center fw-bold fs-12">LATEST MODELS</h1>
       <p className="text-center text-secondary">Please select a Vespa Model</p>
+      {(!Array.isArray(motorcycles) || !motorcycles.length) && (
+        <p style={{ margin: 'auto' }}>No Motorcycles Added Yet.</p>
+      )}
+
       {Array.isArray(motorcycles) && motorcycles.length > 0 && (
         <Carousel
           showArrows

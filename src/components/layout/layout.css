@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
 .app-navigation-bar {
   position: fixed;
   width: 100vw;
@@ -129,7 +127,8 @@ main > section:last-child {
   .app-navigation > span {
     opacity: 0;
     width: 100%;
-    transition: all 1s ease-in-out;
+    transition: width 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
   }
 
   .display-sidebar .app-navigation > span {

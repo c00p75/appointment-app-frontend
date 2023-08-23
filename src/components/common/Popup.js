@@ -13,8 +13,8 @@ const Popup = ({ handleClose }) => {
       style={{ zIndex: 9998, backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
     >
       <div
-        className="w-50 h-30 login-popup p-4 bg-light position-relative"
-        style={{ zIndex: 9999, borderRadius: '1rem' }}
+        className="login-popup p-4 bg-light position-relative"
+        style={{ zIndex: 9999 }}
       >
         {' '}
         <i className="fa fa-xmark" />
