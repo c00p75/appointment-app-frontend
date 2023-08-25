@@ -35,15 +35,15 @@
 }
 
 .moto-photo {
-  margin-top: 3rem;
+  margin: 0 !important;
   max-width: 50vw;
   max-height: 50vh;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .social {
-  height: 3rem;
+  height: 2.6rem;
 }
 
 @media (width >= 800px) {

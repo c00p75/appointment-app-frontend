@@ -62,7 +62,7 @@
 }
 
 .flip-card-back {
-  background-color: black;
+  background: transparent;
   transform: rotateY(180deg);
 }
 
@@ -135,4 +135,15 @@
   background-color: white !important;
   opacity: 0;
   transition: 0.5s ease-in-out;
+}
+
+@media (width <= 576px) {
+  .overlay-text {
+    font-size: 4em;
+  }
+
+  .flip-card {
+    width: 30vw;
+    height: 30vh;
+  }
 }

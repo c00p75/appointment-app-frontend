@@ -65,7 +65,7 @@ main > section:last-child {
   letter-spacing: 0.8px;
 }
 
-.app-navigation span:hover {
+.app-navigation > span:hover {
   background: rgb(173 255 47 / 30%);
 }
 

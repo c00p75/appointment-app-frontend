@@ -12,7 +12,7 @@ const Loader = () => {
   useEffect(() => {
     async function fetchData() {
       const isSuccess = await dispatch(getMotorcycles());
-      if (isSuccess.meta.requestStatus === 'fulfilled') {
+      if (isSuccess.meta.requestStatus) {
         setPhaseOut(true);
         setTimeout(() => {
           setLoading(false);

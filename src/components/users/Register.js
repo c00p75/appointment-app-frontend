@@ -52,7 +52,7 @@ const Register = ({ toggle, setIsLoading }) => {
       id="register"
       className="d-flex flex-column justify-content-center align-items-center"
     >
-      <h1 className="mb-3">REGISTER</h1>
+      <h3 className="mb-3">Sign Up</h3>
       <form
         className="d-flex flex-column justify-content-center align-items-center"
         onSubmit={handleRegister}
@@ -88,7 +88,7 @@ const Register = ({ toggle, setIsLoading }) => {
           className="border border-none fs-5"
         />
 
-        <button type="submit" className="my-3">
+        <button type="submit" className="button-submit my-3">
           Register
         </button>
       </form>

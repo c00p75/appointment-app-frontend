@@ -52,7 +52,7 @@ const Motorcycles = () => {
   return (
     <div className="d-flex flex-column main-container pt-5">
       <h1 className="text-center fw-bold fs-12">LATEST MODELS</h1>
-      <p className="text-center text-secondary">Please select a Vespa Model</p>
+      <p className="text-center text-secondary m-0">Please select a Motorcycle</p>
       {(!Array.isArray(motorcycles) || !motorcycles.length) && (
         <p style={{ margin: 'auto' }}>No Motorcycles Added Yet.</p>
       )}
@@ -78,7 +78,7 @@ const Motorcycles = () => {
               onKeyDown={(event) => {
                 if (event.key === 'Enter') handleShowDetail(motorcycle.id);
               }}
-              className="border-0 d-flex flex-column justify-content-between align-items-center bg-transparent btn h-100"
+              className="border-0 d-flex flex-column justify-content-between align-items-center bg-transparent m-0 btn"
             >
               <div>
                 <img
@@ -87,11 +87,8 @@ const Motorcycles = () => {
                   className="moto-photo"
                 />
               </div>
-              <div
-                className="d-flex flex-column justify-content-end align-items-center my-0"
-                style={{ height: '15rem' }}
-              >
-                <h3 className="fs-1">{motorcycle.model}</h3>
+              <div className="d-flex flex-column justify-content-end align-items-center my-0">
+                <h3>{motorcycle.model}</h3>
                 <p className="fs-6 text-secondary" style={{ height: '4rem' }}>
                   {motorcycle.description}
                 </p>

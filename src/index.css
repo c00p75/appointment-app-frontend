@@ -20,6 +20,7 @@ body {
   background-color: transparent;
   color: var(--main-bkg);
   margin-left: -2em;
+  font-weight: bold;
 }
 
 .reserve-form {
@@ -125,12 +126,12 @@ select ::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  height: 30px;
 }
 
 .progress-bar {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border: 4px solid #ccc;
   border-top: 4px solid var(--main-bkg);
   border-radius: 50%;
@@ -214,8 +215,123 @@ select ::after {
   }
 }
 
+#login-popup-overlay {
+  z-index: 9998;
+  background-color: rgb(0 0 0 / 95%);
+  transition: all 1s ease-in-out;
+}
+
+#register form {
+  width: 100%;
+}
+
 .login-popup {
+  width: 100%;
   min-width: 300px;
-  width: 80vw;
-  height: 90vh;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  padding: 30px;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+
+.login-popup::before {
+  position: absolute;
+  content: "";
+  width: 300px;
+  height: 300px;
+  background-color: yellowgreen;
+  transform: rotate(45deg);
+  right: -180px;
+  bottom: 20%;
+  z-index: -1;
+  border-radius: 30px;
+  box-shadow: 5px 5px 10px rgb(0 0 0 / 8%);
+}
+
+.close-btn {
+  border: 0;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  background: gainsboro;
+}
+
+.login-popup #login form {
+  width: 100%;
+}
+
+.login-popup #login form .flex-column {
+  width: 100%;
+  margin-top: 2em;
+}
+
+.login-popup #login > p {
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10%;
+}
+
+.input-form {
+  border: 1.5px solid #ecedec;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+#register input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  outline: #2d79f3;
+  margin: 0.5em 0;
+  padding: 0.5em;
+}
+
+#register input:focus {
+  border: 1px solid #2d79f3 !important;
+}
+
+#register input::placeholder {
+  font-weight: normal;
+  font-size: 0.8em;
+  color: darkslategray;
+}
+
+.input {
+  margin-left: 10px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input-form:focus-within {
+  border: 1.5px solid #2d79f3;
+}
+
+.button-submit {
+  margin: 20px 0 10px;
+  background-color: #151717;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
 }
